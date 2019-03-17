@@ -1,0 +1,49 @@
+2019-03-17 09:48:18.934 - INFO  [nio-8080-exec-3] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 09:48:20.330 - INFO  [nio-8080-exec-4] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:48:53.340 - INFO  [nio-8080-exec-7] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:53:55.328 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:54:06.736 - INFO  [nio-8080-exec-5] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:54:59.886 - INFO  [nio-8080-exec-7] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:04.994 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:17.092 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:57.442 - INFO  [nio-8080-exec-4] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:05:51.289 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:06:01.083 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:31:22.892 - INFO  [nio-8080-exec-9] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:31:27.031 - INFO  [nio-8080-exec-7] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:31:51.419 - INFO  [nio-8080-exec-8] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:34:24.646 - INFO  [nio-8080-exec-9] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:34:36.753 - INFO  [io-8080-exec-10] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:04.995 - INFO  [nio-8080-exec-6] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:11.803 - INFO  [nio-8080-exec-4] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:22.060 - INFO  [nio-8080-exec-9] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:25.145 - INFO  [nio-8080-exec-5] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:27.471 - INFO  [nio-8080-exec-1] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:30.208 - INFO  [nio-8080-exec-3] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:36.940 - INFO  [nio-8080-exec-2] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:38.777 - INFO  [nio-8080-exec-8] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:35:48.768 - INFO  [io-8080-exec-10] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:36:09.059 - INFO  [nio-8080-exec-1] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:42:06.608 - INFO  [nio-8080-exec-5] c.p.d.c.PaperInfoController    : 2017113207,查看投稿信息/前期准备
+2019-03-17 10:42:32.917 - INFO  [io-8080-exec-10] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:35.682 - INFO  [nio-8080-exec-2] c.p.d.c.GoalSettingController  : 2017113207点击目标设定
+2019-03-17 10:42:40.745 - INFO  [nio-8080-exec-1] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:43.624 - INFO  [nio-8080-exec-9] c.p.d.c.GoalSettingController  : 2017113207点击目标设定
+2019-03-17 10:42:46.520 - INFO  [nio-8080-exec-8] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:58.465 - INFO  [io-8080-exec-10] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:01.838 - INFO  [nio-8080-exec-3] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:43:08.663 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:34.107 - INFO  [nio-8080-exec-2] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:42.411 - INFO  [nio-8080-exec-5] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:43:44.686 - INFO  [nio-8080-exec-9] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:45:00.289 - INFO  [nio-8080-exec-5] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:46:44.750 - INFO  [nio-8080-exec-8] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:46:51.262 - INFO  [nio-8080-exec-2] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:46:57.895 - INFO  [nio-8080-exec-6] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:47:00.165 - INFO  [io-8080-exec-10] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:47:28.874 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:58:20.286 - INFO  [nio-8080-exec-5] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 10:59:28.556 - INFO  [nio-8080-exec-6] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:00:25.580 - INFO  [nio-8080-exec-6] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:06:53.378 - INFO  [nio-8080-exec-1] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:06:55.939 - INFO  [nio-8080-exec-7] c.p.d.c.MypaperController      : 2017113207 点击我的论文

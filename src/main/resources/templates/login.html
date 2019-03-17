@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="text/html"/>
+    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!--Bootstrap--><!--BootstrapValidator-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--BootstrapValidator-->
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <link href="../bootstrap/css/style.css" rel="stylesheet">
+    <link href="../bootstrap/css/footer.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="section light">
+    <div class="inner">
+        <div class="container">
+            <div class="row ">
+                <h2 class="text-center">登录
+                    <small>好好学习 天天向上</small>
+                </h2>
+                <div class="col-md-4 col-md-offset-4">
+                    <form id="defaultForm" accept-charset="utf-8" th:action="@{/loginVerify}" method="post">
+                        <div class="form" id="alert">
+                            <div class="alert alert-danger" th:if="${loginError}" >
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>学号/密码错误<br>（你要是忘了密码你就通过qq联系那个叫张晓彤的人）</strong>
+                            </div>
+                            <div class="alert alert-danger" th:if="${register}" >
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>亲～你还没有注册哦～这边的建议是你先注册呢～没注册是没法登录的哦</strong>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-bottom: 30px">
+                            <input type="text" id="stuid" name="stuid" placeholder="你的学号" required
+                                   data-bv-notempty-message="学号不能为空">
+                        </div>
+                        <div class="text-center">
+                            <input type="password" id="password" name="password" placeholder="你的密码" required
+                                   data-bv-notempty-message="密码不能为空">
+                        </div>
+                        <div class="button-wrapper">
+                            <button type="submit" id="mc-embedded-subscribe" name="subscribe" class="button">提交</button>
+                        </div>
+                        <div class="text-center">
+                            <h5>首次使用的同学请先注册<a href="javascript:void(0)" data-toggle="modal" data-target="#myModal">注册</a></h5>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- end .container -->
+    </div> <!-- end .inner -->
+</div> <!-- end .section -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">注册</h4>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/loginregister}" method="post" id="form-register">
+                    <div class="form" id="alerttest">
+                        <div class="alert alert-danger" th:if="${registerjudge}" >
+                            <a href="#" class="close" data-dismiss="alert">&times;</a>
+                            <strong>请勿重复注册（你要是忘了密码你就通过qq联系那个叫张晓彤的人）</strong>
+                        </div>
+                    </div>
+
+                    <label for="studentid">学号</label>
+                    <input type="text" id="studentid" name="stuid" class="form-control" placeholder="学号" required
+                           data-bv-notempty-message="学号不能为空">
+
+                    <label for="stupassword">密码</label>
+                    <input type="password" id="stupassword" name="password" class="form-control" placeholder="请输入密码"
+                           required data-bv-notempty-message="密码不能为空">
+
+                    <label for="stuname">姓名</label>
+                    <input type="text" id="stuname" name="stuname" class="form-control" placeholder="姓名" required
+                           data-bv-notempty-message="姓名不能为空">
+
+                    <label for="gender">性别</label>
+                    <select id="gender" class="form-control" name="gender">
+                        <option>男孩子</option>
+                        <option>女孩子</option>
+                    </select>
+                    <label for="major">专业</label>
+                    <select id="major" class="form-control" name="major">
+                        <option>计算机应用技术</option>
+                        <option>教育技术学</option>
+                        <option>现代教育技术</option>
+                        <option>软件工程</option>
+                        <option>数据科学与大数据技术</option>
+                        <option>教育信息技术</option>
+                    </select>
+                    <div class="modal-footer">
+                        <input type="submit" id="subscribe"  class="button" onclick="checkradio()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    function checkradio(){
+        alert("注册成功️")
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

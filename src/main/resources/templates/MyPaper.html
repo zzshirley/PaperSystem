@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的论文</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--BootstrapValidator-->
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <!-- 导航固定在顶部 -->
+    <div class="container">
+        <!-- 容器 -->
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <!-- 绑定 -->
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">写作系统</a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="prepare.html" class="active">前期准备</a></li>
+                <li class="active"><a href="MyPaper.html">论文撰写</a></li>
+                <li><a href="">阅读与评价</a></li>
+            </ul>
+        </div>
+        <!--导航-->
+    </div>
+</nav>
+
+<section>
+    <div class="mypaper" style="padding-top: 80px">
+        <ul class="breadcrumb col-md-10 col-md-offset-1" style="padding-top: 7px">
+            <li class="active "><a href="MyPaper.html">我的论文</a></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                <h3 class="info">论文信息</h3>
+                <ul>
+                    <li><h4>标题</h4></li>
+
+                    <li th:if="${chp0}!=null">
+                        <a>摘要</a>
+                    </li>
+                    <li><h4>关键字</h4></li>
+                    <li th:if="${chp1}!=null">
+                        <a>引言</a>
+                    </li>
+                    <li th:if="${chp2}!=null">
+                        <a>相关研究</a>
+                    </li>
+                    <li th:if="${chp3}!=null">
+                        <a>研究主题</a>
+                    </li>
+                    <li th:if="${chp4}!=null">
+                        <a>研究方法</a>
+                    </li>
+                    <li th:if="${chp5}!=null">
+                        <a>研究结果</a>
+                    </li>
+                    <li th:if="${chp6}!=null">
+                        <a>讨论</a>
+                    </li>
+                    <li th:if="${chp7}!=null">
+                        <a>结论</a>
+                    </li>
+                    <li><h4>参考文献</h4></li>
+                </ul>
+                </div>
+            <div class="col-md-6">
+                <div class="panel-info">
+                    <div class="list-group">
+                        <div class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#myModal" >标题</a></div>
+                        <div class="list-group-item" th:if="${chp0}!=null">
+                            <a th:href="@{'/writePaper?chapter='+'摘要'}">摘要</a>
+                        </div>
+                        <div class="list-group-item"><h4>关键字</h4></div>
+                        <div class="list-group-item" th:if="${chp1}!=null">
+                            <a>引言</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp2}!=null">
+                            <a>相关研究</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp3}!=null">
+                            <a>研究主题</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp4}!=null">
+                            <a>研究方法</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp5}!=null">
+                            <a>研究结果</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp6}!=null">
+                            <a>讨论</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item" th:if="${chp7}!=null">
+                            <a>结论</a>
+                            <a>编辑</a>
+                            <a>阅读与自评</a>
+                        </div>
+                        <div class="list-group-item"><h4>参考文献</h4></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">添加论文题目</h4>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/setmypapername}" method="post" id="form-register">
+                    <label for="mypapername">论文标题</label>
+                    <input type="text" id="mypapername" name="mypapername" class="form-control" placeholder="我的论文题目" required data-bv-notempty-message="不能为空">
+                    <div class="modal-footer">
+                        <input type="submit" id="subscribe"  class="button" onclick="checkradio()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background-image: url("../img/loginbg.jpg");
+}
+
+#back {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(39, 65, 82, 0.8);
+    position: fixed;
+}
+
+.top {
+    margin-bottom: 50px;
+}
+
+#contact {
+    margin-top: 15%;
+    height: 100%;
+    width: 100%;
+}
+
+#contact .col.md-12:right {
+    padding: 80px 0;
+    text-align: center;
+    box-shadow: 1px 1px 4px #ccc;
+    margin-bottom: 20px;
+}
+
+#contact h2 {
+    font-weight: bold;
+    margin-top: 10px;
+    bottom: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+#contact p {
+    line-height: 25px;
+    margin-top: 10px;
+    bottom: 0px;
+}
+
+#contact right {
+    background: #fff;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#contact .form-control {
+    border: none;
+    border-radius: 0;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+#contact textarea.form-control {
+    height: auto;
+    background-image: url("../img/loginbg.jpg");
+}
+
+#contact input[type="submit"] {
+    background: #9FCDFF;
+    color: #fff;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+#contact input[type="submit"]:hover {
+    background: #007BFF;
+    font-weight: bold;
+}
+
+#contact btn[type="submit"] {
+    background: #9FCDFF;
+    margin-bottom: 20px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.img-responsive {
+    top: 100px;
+    text-align: center;
+    height: auto;
+    max-width: 100%;
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>撰写论文</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/css/font-awesome.css"/>
+    <!--键盘事件-->
+    <link rel="stylesheet" href="../bootstrap/css/index.css"/>
+
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/style.css" rel="stylesheet">
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <!-- 导航固定在顶部 -->
+    <div class="container">
+        <!-- 容器 -->
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <!-- 绑定 -->
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">写作系统</a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="prepare.html" class="active">前期准备</a></li>
+                <li class="active"><a href="">论文撰写</a></li>
+                <li><a href="">阅读与评价</a></li>
+            </ul>
+        </div>
+        <!--导航-->
+    </div>
+</nav>
+<div class="writePaper">
+    <div class="inner" style="margin-top:70px">
+        <ul class="breadcrumb">
+            <li><a href="#">我的论文</a></li>
+            <li class="active "><a href="#">撰写论文</a></li>
+            <li>自评</li>
+        </ul>
+        <form class="col-md-6">
+            <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}"></h3>
+            <div  style="height: 6px;"></div>
+
+            <!--这里加上是为了让提示信息显示 不然会被遮挡-->
+            <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                        <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                        <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                    <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                    <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                    <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
+                    <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
+                    <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                    <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                    <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                    <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                    <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                </div>
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
+                    <div class="dropdown-menu input-append">
+                        <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
+                        <button class="btn" type="button">Add</button>
+                    </div>
+                    <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
+
+                </div>
+                <div class="btn-group">
+                    <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
+                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                </div>
+                <div class="btn-group">
+                    <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                    <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                </div>
+                <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="">
+            </div>
+            <div id="editor">
+                我的论文...
+            </div>
+            <div  style="height: 6px;"></div>
+            <button  data-toggle="modal" data-target="#myModal"  class="button center-block" >提交</button>
+        </form>
+        <div class="col-md-6">
+            <h3 class="center-block" style="color: #0e90d2">相关笔记</h3>
+            <div  style="height: 6px;"></div>
+            <div class="panel">
+                <div>
+                    <h5>我的笔记</h5>
+                </div>
+                <div th:each="donenotes,iterStat:${donenotes}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script src="../bootstrap/js/jquery.hotkeys.js"></script>
+<script src="../bootstrap/js/bootstrap-wysiwyg.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    $(function(){
+        function initToolbarBootstrapBindings() {
+            var fonts = ['Serif', 'Sans', 'Arial', 'Arial Black', 'Courier',
+                    'Courier New', 'Comic Sans MS', 'Helvetica', 'Impact', 'Lucida Grande', 'Lucida Sans', 'Tahoma', 'Times',
+                    'Times New Roman', 'Verdana'],
+                fontTarget = $('[title=Font]').siblings('.dropdown-menu');
+            $.each(fonts, function (idx, fontName) {
+                fontTarget.append($('<li><a data-edit="fontName ' + fontName +'" style="font-family:\''+ fontName +'\'">'+fontName + '</a></li>'));
+            });
+            $('a[title]').tooltip({container:'body'});
+            $('.dropdown-menu input').click(function() {return false;})
+                .change(function () {$(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');})
+                .keydown('esc', function () {this.value='';$(this).change();});
+
+            $('[data-role=magic-overlay]').each(function () {
+                var overlay = $(this), target = $(overlay.data('target'));
+                overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+            });
+            $('#voiceBtn').hide();
+            // if ("onwebkitspeechchange"  in document.createElement("input")) {
+            //   var editorOffset = $('#editor').offset();
+            //   $('#voiceBtn').css('position','absolute').offset({top: editorOffset.top, left: editorOffset.left+$('#editor').innerWidth()-35});
+            // } else {
+            //   $('#voiceBtn').hide();
+            // }
+        };
+        initToolbarBootstrapBindings();
+        $('#editor').wysiwyg();
+        window.prettyPrint && prettyPrint();
+    });
+</script>
+</body>
+</html>

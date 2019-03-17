@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>添加笔记</title>
+    <!--Bootstrap-->
+
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <script src="../bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../bootstrap/js/bootstrap-datetimepicker.js"></script>
+
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <!-- 导航固定在顶部 -->
+    <div class="container">
+        <!-- 容器 -->
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <!-- 绑定 -->
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">写作系统</a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="prepare.html" class="active">前期准备</a></li>
+                <li><a href="">论文撰写</a></li>
+                <li><a href="">阅读与评价</a></li>
+            </ul>
+        </div>
+        <!--导航-->
+    </div>
+</nav><!-- end .header -->
+<div class="prepare">
+    <div class="inner" th:action="@{'/writeNote'}">
+        <div class="container">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li><a href="prepare.html" class="active">投稿信息</a></li>
+                    <li><a href="keyword.html" >建立关键词与学者名单</a></li>
+                    <li><a href="paperCollection.html">文献搜集</a></li>
+                </ul>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li>
+                            <a href="paperCollection.html">投稿信息</a>
+                        </li>
+                        <li >
+                            <a href="myNote.html">我的笔记</a>
+                        </li>
+                        <li class="active">
+                            <a href="">记笔记</a>
+                        </li>
+                    </ul>
+                    <form  id="papernote" name="papernote" class="mar_t15" style="margin-top: 10px" >
+                        <div class="form" id="alerttest">
+                            <div class="alert alert-danger" th:if="${infojudge}" >
+                                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                                <strong>这篇论文已经添加过了哦</strong>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <h3 th:text="${papername}" id="papername"></h3>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade">评分</label>
+                            <select id="grade" class="form-control" name="grade">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>关键词</label>
+                            <div th:each="rkeywords,iterStat:${rkeyword}">
+                                <label class="checkbox-inline">
+                                    <input type="checkbox" name="keyword[]" th:value="${rkeywords.word1}" th:text="${rkeywords.word1}">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>对自己的帮助</label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="引言">引言
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="相关研究">相关研究
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="研究主体">研究主题
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="研究方法">研究方法
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="研究结果">研究结果
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="讨论">讨论
+                            </label>
+                            <label class="checkbox-inline">
+                                <input type="checkbox" name="selfhelp" value="结论">结论
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="pnote">笔记</label>
+                            <textarea name="pnote" class="form-control" id="pnote" rows="4" cols="10" required
+                                      data-bv-notempty-message="不能为空"></textarea>
+                        </div>
+                        <button type="button" class="button center-block" th:onclick="|javascript:subwriteNote()|">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    var wd="";
+    var sp=""
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+        $('#papernote').bootstrapValidator({
+
+            message: 'This value is not valid',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                pnote: {
+                    message: '用户名验证失败',
+                    validators: {
+                        notEmpty: {
+                            message: '不能为空哦'
+                        }
+                    }
+                },
+            }
+        });
+    })
+    $(function(){
+        $(".close").click(function(){
+            $("#nocheck").alert('close');
+            $("#alertself").alert('close');
+            $("#alertselfirst").alert('close');
+            $("#alerttest").alert('close');
+        });
+    });
+
+    subwriteNote=function() {
+        var papername=$("#papername").text();
+        var grade=$("#grade option:selected").text();
+        var pnote=$("#pnote").val();
+        var s=document.getElementsByName("keyword[]")
+        var p=document.getElementsByName("selfhelp")
+        for(k in s){
+            if(s[k].checked)
+                wd=wd+" "+s[k].value;
+        };
+        for(m in p){
+            if(p[m].checked)
+                sp=sp+" "+p[m].value;
+        };
+        $.ajax({
+            url: '/SubwriteNote',
+            data: {
+                papername: papername,
+                grade:grade,
+                keywords:wd,
+                selfhelp:sp,
+                papernote:pnote
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                console.log(data);
+                alert("记录成功")
+                window.location.href = '/paperCollection';
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

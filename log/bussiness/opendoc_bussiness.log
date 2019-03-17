@@ -1,0 +1,66 @@
+2019-03-17 09:48:14.577 - INFO  [nio-8080-exec-2] c.p.d.c.LoginController        : 2017113207，登录
+2019-03-17 09:48:20.330 - INFO  [nio-8080-exec-4] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:48:46.740 - INFO  [nio-8080-exec-8] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/ICT and Economic Growth – Comparing Developing, Emerging and Developed Countries
+2019-03-17 09:48:51.500 - INFO  [nio-8080-exec-5] c.p.d.c.WriteNoteController    : 2017113207添加笔记/ICT and Economic Growth – Comparing Developing, Emerging and Developed Countries
+2019-03-17 09:48:53.348 - INFO  [nio-8080-exec-7] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:53:55.334 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:53:58.233 - INFO  [nio-8080-exec-7] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains
+2019-03-17 09:54:05.268 - INFO  [nio-8080-exec-8] c.p.d.c.WriteNoteController    : 2017113207添加笔记/Hyperledger Fabric: A Distributed Operating System for Permissioned Blockchains
+2019-03-17 09:54:06.736 - INFO  [nio-8080-exec-5] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:54:54.078 - INFO  [nio-8080-exec-4] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/Self-regulated learning strategies predict learner behavior and goal attainment in Massive Open Online Courses
+2019-03-17 09:54:58.337 - INFO  [nio-8080-exec-1] c.p.d.c.WriteNoteController    : 2017113207添加笔记/Self-regulated learning strategies predict learner behavior and goal attainment in Massive Open Online Courses
+2019-03-17 09:54:59.892 - INFO  [nio-8080-exec-7] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:05.000 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:08.214 - INFO  [nio-8080-exec-2] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/Social network analysis of peer relationships and online interactions in a blended class using blogs
+2019-03-17 09:56:15.640 - INFO  [io-8080-exec-10] c.p.d.c.WriteNoteController    : 2017113207添加笔记/Social network analysis of peer relationships and online interactions in a blended class using blogs
+2019-03-17 09:56:17.093 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 09:56:51.409 - INFO  [nio-8080-exec-6] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/Self-regulated learning strategies predict learner behavior and goal attainment in Massive Open Online Courses
+2019-03-17 09:56:55.814 - INFO  [nio-8080-exec-2] c.p.d.c.WriteNoteController    : 2017113207添加笔记/Self-regulated learning strategies predict learner behavior and goal attainment in Massive Open Online Courses
+2019-03-17 09:56:57.442 - INFO  [nio-8080-exec-4] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:05:51.290 - INFO  [nio-8080-exec-1] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:05:55.395 - INFO  [nio-8080-exec-8] c.p.d.c.WriteNoteController    : 2017113207点击添加笔记页/ICT and Economic Growth – Comparing Developing, Emerging and Developed Countries
+2019-03-17 10:05:59.636 - INFO  [nio-8080-exec-3] c.p.d.c.WriteNoteController    : 2017113207添加笔记/ICT and Economic Growth – Comparing Developing, Emerging and Developed Countries
+2019-03-17 10:06:01.088 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:27:01.453 - INFO  [nio-8080-exec-1] c.p.d.c.WritePaperController   : 2017113207撰写论文 
+2019-03-17 10:31:27.031 - INFO  [nio-8080-exec-7] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:31:51.419 - INFO  [nio-8080-exec-8] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:34:24.647 - INFO  [nio-8080-exec-9] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:04.966 - INFO  [nio-8080-exec-2] c.p.d.c.LoginController        : 2017113207，登录
+2019-03-17 10:42:32.918 - INFO  [io-8080-exec-10] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:35.688 - INFO  [nio-8080-exec-2] c.p.d.c.GoalSettingController  : 2017113207点击目标设定
+2019-03-17 10:42:40.745 - INFO  [nio-8080-exec-1] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:43.624 - INFO  [nio-8080-exec-9] c.p.d.c.GoalSettingController  : 2017113207点击目标设定
+2019-03-17 10:42:46.520 - INFO  [nio-8080-exec-8] c.p.d.c.AddInfoController      : 2017113207,企图添加投稿信息
+2019-03-17 10:42:48.784 - INFO  [nio-8080-exec-8] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:42:54.791 - INFO  [nio-8080-exec-5] c.p.d.c.ScholarController      : 2017113207查看学者信息
+2019-03-17 10:42:58.466 - INFO  [io-8080-exec-10] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:01.839 - INFO  [nio-8080-exec-3] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:43:08.663 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:34.113 - INFO  [nio-8080-exec-2] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:43:42.411 - INFO  [nio-8080-exec-5] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:43:44.692 - INFO  [nio-8080-exec-9] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:45:00.290 - INFO  [nio-8080-exec-5] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:45:02.985 - INFO  [nio-8080-exec-6] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:07.417 - INFO  [nio-8080-exec-5] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:43.591 - INFO  [nio-8080-exec-3] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:44.982 - INFO  [nio-8080-exec-5] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:45.733 - INFO  [nio-8080-exec-6] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:47.005 - INFO  [nio-8080-exec-1] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:48.365 - INFO  [nio-8080-exec-9] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:45:56.159 - INFO  [nio-8080-exec-9] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:46:34.966 - INFO  [nio-8080-exec-6] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:46:36.111 - INFO  [nio-8080-exec-9] c.p.d.c.ScholarController      : 2017113207查看学者信息
+2019-03-17 10:46:42.509 - INFO  [nio-8080-exec-3] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:46:44.751 - INFO  [nio-8080-exec-8] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:46:51.262 - INFO  [nio-8080-exec-2] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:46:57.901 - INFO  [nio-8080-exec-6] c.p.d.c.MyNoteController       : 2017113207,查看我的笔记
+2019-03-17 10:47:00.165 - INFO  [io-8080-exec-10] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:47:28.875 - INFO  [nio-8080-exec-6] .d.c.PaperCollectionController : 2017113207,查看文献信息/文献搜集
+2019-03-17 10:47:31.131 - INFO  [nio-8080-exec-2] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:58:14.281 - INFO  [nio-8080-exec-1] c.p.d.c.KeywordController      : 2017113207添加关键词/查看关键词
+2019-03-17 10:58:20.292 - INFO  [nio-8080-exec-5] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 10:59:28.557 - INFO  [nio-8080-exec-6] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:00:25.580 - INFO  [nio-8080-exec-6] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:06:53.379 - INFO  [nio-8080-exec-1] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:06:55.939 - INFO  [nio-8080-exec-7] c.p.d.c.MypaperController      : 2017113207 点击我的论文
+2019-03-17 11:06:57.657 - INFO  [nio-8080-exec-6] c.p.d.c.WritePaperController   : 2017113207撰写论文 

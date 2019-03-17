@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>关键词与学者设定</title>
+    <!--Bootstrap-->
+
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+    <!--BootstrapValidator-->
+    <link href="../bootstrap/bootstrapvalidator/src/css/bootstrapValidator.css" rel="stylesheet">
+    <script src="../bootstrap/bootstrapvalidator/src/js/bootstrapValidator.js"></script>
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <link href="../bootstrap/css/bootstrap-maizi.css" rel="stylesheet">
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <!-- 导航固定在顶部 -->
+    <div class="container">
+        <!-- 容器 -->
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <!-- 绑定 -->
+                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">写作系统</a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="prepare.html" class="active">前期准备</a></li>
+                <li><a href="MyPaper.html">论文撰写</a></li>
+                <li><a href="">阅读与评价</a></li>
+            </ul>
+        </div>
+        <!--导航-->
+    </div>
+</nav><!-- end .header -->
+<div class="prepare">
+    <div class="inner">
+        <div class="container">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li><a href="prepare.html" class="active">投稿信息</a></li>
+                    <li><a href="keyword.html" >建立关键词与学者名单</a></li>
+                    <li><a href="paperCollection.html">文献搜集</a></li>
+                </ul>
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="keyword.html">添加关键词</a>
+                        </li>
+                        <li>
+                            <a href="scholar.html">添加相关学者</a>
+                        </li>
+                    </ul>
+                    <h5 style="padding-top: 6px">添加中文关键词</h5>
+                    <form style="margin-top: 10px;padding-bottom: 10px" th:action="@{'/addkeyword?lang=0'}" th:method="post">
+                        <div class="col-md-10">
+                            <input style="padding-bottom: 6px" class="form-control" name="keyword" placeholder="请输入要添加的关键词，每次请输入一个" required
+                                   data-bv-notempty-message="关键词不能空哦">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-default">添加</button>
+                        </div>
+                    </form>
+
+                    <div class="col-md-12 taglist">
+                        <div style="height: 6px"></div>
+                        <h5 style="margin-top: 6px">我的中文关键词：</h5>
+                        <div th:each="keyword0,iterStat:${keyword0}">
+                            <div class="alert alert-info alert-dismissible pull-left" role="alert">
+                                <strong><a th:text="${keyword0.word1}" th:href="|javascript:new_page('${keyword0.word1}');|" ></a></strong>
+                                <a class="pull-right" th:href="@{'/delkeyword?id='+${keyword0.id}+'&keyword='+${keyword0.word1}}" >&times;</a>
+                            </div>
+                        </div>
+                    </div>
+                    <form style="margin-top: 10px;margin-bottom: 10px" th:action="@{'/addkeyword?lang=1'}" th:method="post">
+                        <h5 style="padding-top: 6px"><br>添加英文关键词</h5>
+                        <div class="col-md-10">
+                            <input class="form-control" name="keyword" placeholder="请输入要添加的关键词，每次请输入一个"required
+                                   data-bv-notempty-message="关键词不能空哦">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-default">添加</button>
+                        </div>
+                    </form>
+
+                    <div class="col-md-12 taglist">
+                        <div style="height: 6px"></div>
+                        <h5 style="margin-top: 6px">我的英文关键词：</h5>
+                        <div th:each="keyword1,iterStat:${keyword1}">
+                            <div class="alert alert-info alert-dismissible pull-left" role="alert">
+                                <strong><a th:text="${keyword1.word1}" th:href="|javascript:new_page('${keyword1.word1}');|" ></a></strong>
+                                <a class="pull-right" th:href="@{'/delkeyword?id='+${keyword1.id}+'&keyword='+${keyword1.word1}}" target="_blank">&times;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+
+    new_page=function(keyword){
+        window.open("http://xueshu.baidu.com/s?&wd="+keyword+"&rsv_bp=0&tn=SE_baiduxueshu_c1gjeupa&rsv_spt=3&ie=utf-8&f=8&rsv_sug2=0&sc_f_para=sc_tasktype%3D%7BfirstSimpleSearch%7D");
+        $.ajax({
+            url: '/readkeyword',
+            data: {
+                keyword:keyword,
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function(data) {
+                console.log(data);
+
+            }
+        });
+    }
+</script>
+</body>
+</html>

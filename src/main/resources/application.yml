@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://118.24.187.136:3306/paper?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    username: lili
+    password: 1234asdf
+  jpa:
+    hibernate:
+      # create： 每次启动先删除表，再新建
+      # update： 如果没有就新建表，启动时不删表
+      # create-drop: 应用停下来的删除表
+      # none： 什么都不做
+      # validate：验证@Entity类和表结构是否一致，不一致会报错
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    #不缓存页面
+    cache: false
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    mode: HTML5
+    content-type: text/html
+  logging:
+    config: classpath:log4j2.yml
+      
+    
