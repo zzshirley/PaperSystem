@@ -17,5 +17,6 @@ public interface LoginRepo extends JpaRepository<User, String> {
 
     List<User> findByStuidAndPassword(String stuid, String password);
     List<User> findByStuid(String stuid);
+    List<User> findAllByOrderById();
 
 }

@@ -14,5 +14,6 @@ import java.util.List;
 @Repository
 public interface PaperCollectionRepo extends JpaRepository<PaperCollection,String> {
 
-    List<PaperCollection> findAll();
+    List<PaperCollection> findAllByOrderByIdDesc();
+    List<PaperCollection> findByPapername(String papername);
 }

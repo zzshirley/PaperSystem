@@ -41,6 +41,8 @@ public class paperNote {
     @Column(name = "notetext")
     private String notetext;
 
+    @Column(name = "paperauthor")
+    private String paperauthor;
 
     public paperNote() {
     }
@@ -52,6 +54,16 @@ public class paperNote {
         this.rkeyword = rkeyword;
         this.selfhelp = selfhelp;
         this.notetext = notetext;
+    }
+
+    public paperNote(String stuid, String paperid, String grade, String rkeyword, String selfhelp, String notetext, String paperauthor) {
+        this.stuid = stuid;
+        this.paperid = paperid;
+        this.grade = grade;
+        this.rkeyword = rkeyword;
+        this.selfhelp = selfhelp;
+        this.notetext = notetext;
+        this.paperauthor = paperauthor;
     }
 
     public int getId() {
@@ -108,5 +120,13 @@ public class paperNote {
 
     public void setNotetext(String notetext) {
         this.notetext = notetext;
+    }
+
+    public String getPaperauthor() {
+        return paperauthor;
+    }
+
+    public void setPaperauthor(String paperauthor) {
+        this.paperauthor = paperauthor;
     }
 }

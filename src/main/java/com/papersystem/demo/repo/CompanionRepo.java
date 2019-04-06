@@ -1,6 +1,6 @@
 package com.papersystem.demo.repo;
 
-import com.papersystem.demo.bean.Goal;
+import com.papersystem.demo.bean.Companion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -11,16 +11,18 @@ import java.util.List;
 
 /**
  * @author Xiaotong
- * @createTime 2019228 下午9:38
- * @description 目标设定
+ * @createTime 20190323 下午3:07
+ * @description 伙伴
  */
 @Repository
-public interface GoalSettingRepo extends JpaRepository<Goal,String> {
+public interface CompanionRepo extends JpaRepository<Companion,String> {
 
     @Modifying
     @Transactional
-    @Query("delete from Goal where id = ?1")
+    @Query("delete from Companion where id = ?1")
     void delete(Integer id);
 
-    List<Goal> findAllByStuidOrderByCode(String stuid);
+    List<Companion> findByStuidAndPartner(String stuid,String partner);
+    List<Companion> findByStuid(String stuid);
+    List<Companion> findByPartner(String partner);
 }

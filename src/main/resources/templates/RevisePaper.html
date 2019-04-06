@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>论文撰写</title>
+    <title>修改论文</title>
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
@@ -34,8 +34,9 @@
     <div class="inner" style="margin-top:70px">
         <ul class="breadcrumb">
             <li><a href="MyPaper.html">我的论文</a></li>
-            <li class="active "><a href="">撰写论文</a></li>
-            <li>自评</li>
+            <li><a href="companion.html">我的伙伴</a></li>
+            <li><a href="OptMonitor.html">意见监控</a></li>
+            <li class="active "><a href="">修改论文</a></li>
         </ul>
         <form class="col-md-6">
             <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}" id="chpt"></h3>
@@ -51,23 +52,23 @@
             <button type="button" class="button center-block" th:onclick="|javascript:subpaper()|">提交</button>
         </form>
         <div class="col-md-6">
-            <h3 class="center-block" style="color: #0e90d2">相关笔记</h3>
+            <h3 class="center-block" style="color: #0e90d2">意见</h3>
             <div  style="height: 6px;"></div>
             <div class="panel" style="overflow:auto;width:100%; height:500px;">
-                <table class="table-bordered table-condensed" >
+                <table class="table table-bordered" >
                     <thead>
-                    <tr>
-                        <th>论文</th>
-                        <th>年份</th>
-                        <th>笔记</th>
+                    <tr style="width: 100px">
+                        <th>意见人</th>
+                        <th>意见面向</th>
+                        <th>内容</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <div th:each="donenotes,iterStat:${donenotes}">
+                    <div th:each="doneOpt,iterStat:${doneOpt}">
                         <tr>
-                            <td th:text="${donenotes.author}"></td>
-                            <td th:text="${donenotes.year}"></td>
-                            <td th:text="${donenotes.note}"></td>
+                            <td th:text="${doneOpt.partner}"></td>
+                            <td th:text="${doneOpt.opt}"></td>
+                            <td th:text="${doneOpt.Optcontent}"></td>
                         </tr>
                     </div>
                     </tbody>
@@ -97,14 +98,14 @@
                 papercontent: papercontent,
                 chapter:chapter,
                 wordnum:length,
-                state:0
+                state:1
             },
             dataType: 'json',
             type: 'post',
             success: function (data) {
                 console.log(data);
                 alert("提交成功")
-                window.location.href = '/writePaper?chapter='+chapter;
+                window.location.href = '/RevisePaper?chapter='+chapter;
             }
         });
     }

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的伙伴</title>
+    <!--Bootstrap-->
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="pagehead :: nav"></div><!-- end .header -->
+<div class="papers">
+    <div class="mypaper" style="padding-top: 80px">
+        <ul class="breadcrumb col-md-10 col-md-offset-1" style="padding-top: 7px">
+            <li class="active"><a href="companion.html">我的伙伴</a></li>
+            <li><a href="students.html">添加伙伴</a></li>
+            <li><a href="OptMonitor.html">意见监控</a></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <div class="col-md-3">
+                        <div th:if="${nofriends}">
+                            <h5>暂时还没有写作伙伴</h5>
+                        </div>
+                        <h3 class="center-block" style="color: #0e90d2">我的写作伙伴</h3>
+                        <div  style="height: 6px;"></div>
+                        <div class="list-group" >
+                            <div class="list-group-item" th:each="partner,iterStat:${partner}">
+                                <h4 class="list-group-item-heading" th:text="${partner.pname}">
+                                </h4>
+                                <div class="list-group-item-text">
+                                    <a th:href="@{'/Partnerfulltext?partnerid='+${partner.stuid}+'&partnername='+${partner.pname}}">查看全文</a>
+                                    <a th:href="@{'/Partnerpaper?chapter=9&partnerid='+${partner.stuid}+'&partnername='+${partner.pname}}">选择章节查看</a>
+                                    <a th:href="@{'/delPartner?partnerid='+${partner.stuid}+'&id='+${partner.id}}">删除伙伴</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h3 class="center-block" style="color: #0e90d2">我给出的意见</h3>
+                        <div  style="height: 6px;"></div>
+                        <div th:if="${noopts}">
+                            <h4 class="center-block" >暂无给出的意见</h4>
+                        </div>
+                        <table class="col-md-12 table-bordered table-condensed">
+                            <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>章节</th>
+                                <th>意见内容</th>
+                                <th>删除意见</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="opts,iterStat:${opts}">
+                                <td th:text="${opts.pname}"></td>
+                                <td th:text="${opts.chapter}"></td>
+                                <td th:text="${opts.optcontent}"></td>
+                                <td><a th:href="@{'/delopt?id='+${opts.id}+'&chapter='+${opts.chapter}+'&pname='+${opts.pname}}">删除</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    function checkradio(){
+        alert("注册成功️")
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

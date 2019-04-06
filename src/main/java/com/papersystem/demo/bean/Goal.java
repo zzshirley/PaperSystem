@@ -70,6 +70,14 @@ public class Goal {
         this.words = words;
         this.code = code;
     }
+    public Goal( int id,String stuid, String date, String chapter, String words, String code) {
+        this.id=id;
+        this.stuid = stuid;
+        this.date = date;
+        this.chapter = chapter;
+        this.words = words;
+        this.code = code;
+    }
 
     public int getId() {
         return id;

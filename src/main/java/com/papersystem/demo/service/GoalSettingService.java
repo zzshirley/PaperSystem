@@ -29,5 +29,10 @@ public class GoalSettingService {
         goalSettingRepo.save(goal);
     }
 
+    public void delGoals(int id){
+
+        goalSettingRepo.delete(id);
+    }
+
 
 }

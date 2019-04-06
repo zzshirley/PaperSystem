@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的伙伴</title>
+    <!--Bootstrap-->
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="pagehead :: nav"></div><!-- end .header -->
+<div class="papers">
+    <div class="mypaper" style="padding-top: 80px">
+        <ul class="breadcrumb col-md-10 col-md-offset-1" style="padding-top: 7px">
+            <li class="active"><a href="companion.html">我的伙伴</a></li>
+        </ul>
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <form  class="col-md-10 col-md-offset-2">
+                        <table class="table-bordered" style="width: 800px">
+                            <h3 class="center-block" style="color: #0e90d2">我的同学</h3>
+                            <div  style="height: 6px;"></div>
+                            <h5>请选择1位以上的同学，你的同学可以查看你的论文</h5>
+                            <tr>
+                                <th>1</th>
+                                <th>2</th>
+                                <th>3</th>
+                                <th>4</th>
+                                <th>5</th>
+                                <th>6</th>
+                                <th>7</th>
+                                <th>8</th>
+                            </tr>
+                            <tbody>
+                            <tr class="info"  style="height: 40px" th:each="i:${#numbers.sequence(0,length,8)}">
+                                <td th:if="${i}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i).stuname}|" th:value="${usrlist.get(i).stuid}">
+                                    </label>
+                                </td>
+                                <td th:if="${i+1}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+1).stuname}|"th:value="${usrlist.get(i+1).stuid}">
+                                    </label>
+                                </td >
+                                <td th:if="${i+2}<${length}" >
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+2).stuname}|"th:value="${usrlist.get(i+2).stuid}">
+                                    </label>
+                                </td>
+                                <td th:if="${i+3}<${length}" >
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+3).stuname}|"th:value="${usrlist.get(i+3).stuid}">
+                                    </label>
+                                </td>
+                                <td th:if="${i+4}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+4).stuname}|"th:value="${usrlist.get(i+4).stuid}" >
+                                    </label>
+                                </td>
+                                <td th:if="${i+5}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+5).stuname}|" th:value="${usrlist.get(i+5).stuid}">
+                                    </label>
+                                </td>
+                                <td th:if="${i+6}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+6).stuname}|" th:value="${usrlist.get(i+6).stuid}">
+                                    </label>
+                                </td>
+                                <td th:if="${i+7}<${length}">
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" name="companion" th:text="|${usrlist.get(i+7).stuname}|" th:value="${usrlist.get(i+7).stuid}">
+                                    </label>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div style="height: 7px"> </div>
+                        <button type="button" class="btn btn-default center-block"  th:onclick="|javascript:subStudents()|">添加</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    subStudents=function() {
+        var stuid="";
+        var s=document.getElementsByName("companion")
+        for(k in s){
+            if(s[k].checked)
+                stuid=stuid+" "+s[k].value;
+        };
+        $.ajax({
+            url: '/substudents',
+            data: {
+                stuid: stuid
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function (data) {
+                console.log(data);
+                alert("记录成功")
+                window.location.href ='/companion';
+
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

@@ -14,8 +14,12 @@
 
     <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
-    <script src="../bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
+    <script src="../bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+
     <script src="../bootstrap/js/bootstrap-datetimepicker.js"></script>
     <!--BootstrapValidator-->
     <link href="../bootstrap/bootstrapvalidator/src/css/bootstrapValidator.css" rel="stylesheet">
@@ -35,33 +39,7 @@
     <link href="../bootstrap/css/logo.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
-    <!-- 导航固定在顶部 -->
-    <div class="container">
-        <!-- 容器 -->
-        <!--小屏幕导航按钮和logo-->
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-toggle="collapse"
-                    data-target=".navbar-collapse">
-                <!-- 绑定 -->
-                <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand">写作系统</a>
-        </div>
-        <!--小屏幕导航按钮和logo-->
-        <!--导航-->
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="index.html">首页</a></li>
-                <li><a href="prepare.html" class="active">前期准备</a></li>
-                <li><a href="">论文撰写</a></li>
-                <li><a href="">阅读与评价</a></li>
-            </ul>
-        </div>
-        <!--导航-->
-    </div>
-</nav><!-- end .header -->
+<div th:replace="pagehead :: nav"></div><!-- end .header --><!-- end .header -->
 <div class="prepare">
     <div class="inner">
         <div class="container">
@@ -83,7 +61,7 @@
                             <a href="goalSetting.html">进度规划</a>
                         </li>
                     </ul>
-                    <table class="table able-striped table-hover table-content">
+                    <table class="table able-striped  table-content" id="tab">
                         <thead>
                         <tr>
                             <th>章节</th>
@@ -93,25 +71,25 @@
                             <th>删除</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="trs">
                         <div th:if="${nonegoals}">
                             <h4 class="center-block" style="color: #b8daff">暂时还没有计划</h4>
                         </div>
                         <div th:if="${mygoals}">
                             <div th:each="stugoals,iterStat:${stugoals}">
                                 <tr>
-                                    <td th:text="${stugoals.chapter}"><td>
+                                    <td th:text="${stugoals.chapter}"></td>
                                     <td>
                                     <div class='input-group date' data-date-format="dd MM yyyy" id='datetimepicker'>
-                                        <input type='text' class="form-control" name="date" id="date0" th:value="${stugoals.date}"/>
+                                        <input type='text' class="form-control" th:value="${stugoals.date}"/>
                                         <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                     </div>
-                                    <td>
-                                    <td><input th:value="${stugoals.words}"><td>
-                                    <td><a data-toggle="modal" data-target="#updategoal" href="" >保存修改</a></td>
-                                    <td><a>删除</a></td>
+                                    </td>
+                                    <td><input  th:value="${stugoals.words}"></td>
+                                    <td><a th:href="|javascript:updategoals('${iterStat.index}','${stugoals.chapter}','${stugoals.id}')|">保存修改</a></td>
+                                    <td><a th:href="@{'/delg?id='+${stugoals.id}+'&chapter='+${stugoals.chapter}}">删除</a></td>
                                 </tr>
                             </div>
                         </div>
@@ -174,9 +152,45 @@
 <footer>
     <div th:replace="footer :: footer"></div>
 </footer>
-<script src="../bootstrap/js/goalSeeting.js" ></script>
 <script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
 <script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    $('#datetimepicker').datetimepicker({
+        minView: 3,
+        format: 'yyyy-mm-dd',
+    });
+    $('#datetimepicker1').datetimepicker({
+        minView: 3,
+        format: 'yyyy-mm-dd',
+    });
+
+    updategoals=function(i,chapter,gid) {
+        var trList = $("#trs").children("tr");
+        var tdArr = trList.eq(i).find("td");
+        var date= tdArr.eq(1).find("input").val();//日期
+        var words = tdArr.eq(2).find("input").val();// 字数
+        console.log(date,words,chapter,gid);
+        $.ajax({
+            url: '/updategoals',
+            data: {
+                date:date,
+                word:words,
+                chapter:chapter,
+                id:gid
+            },
+            dataType: 'json',
+            type: 'post',
+            success: function(data) {
+                console.log(data);
+                alert("更新成功")
+                window.location.href = '/goalSetting'
+            }
+        });
+    }
 </script>
 </body>
 </html>

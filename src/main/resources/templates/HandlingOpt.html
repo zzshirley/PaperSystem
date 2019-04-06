@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>论文撰写</title>
+    <title>意见处理</title>
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
     <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
@@ -25,7 +25,6 @@
     <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
     <!-- Style.css -->
     <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
-    <link href="../bootstrap/css/style.css" rel="stylesheet">
     <link href="../bootstrap/css/logo.css" rel="stylesheet">
 </head>
 <body>
@@ -34,45 +33,46 @@
     <div class="inner" style="margin-top:70px">
         <ul class="breadcrumb">
             <li><a href="MyPaper.html">我的论文</a></li>
-            <li class="active "><a href="">撰写论文</a></li>
-            <li>自评</li>
+            <li><a href="companion.html">我的伙伴</a></li>
+            <li><a href="OptMonitor.html">意见监控</a></li>
+            <li><a>处理意见</a></li>
         </ul>
-        <form class="col-md-6">
-            <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}" id="chpt"></h3>
+        <div class="col-md-12">
+            <h3 class="center-block" style="color: #0e90d2">未处理意见</h3>
             <div  style="height: 6px;"></div>
 
             <!--这里加上是为了让提示信息显示 不然会被遮挡-->
-            <div>
-                <textarea id="mycontent" th:text="${content}"  rows="10" cols="10" style="border-style: outset;border-color: #b8daff">
-
-                </textarea>
-            </div>
-            <div  style="height: 6px;"></div>
-            <button type="button" class="button center-block" th:onclick="|javascript:subpaper()|">提交</button>
-        </form>
-        <div class="col-md-6">
-            <h3 class="center-block" style="color: #0e90d2">相关笔记</h3>
-            <div  style="height: 6px;"></div>
-            <div class="panel" style="overflow:auto;width:100%; height:500px;">
-                <table class="table-bordered table-condensed" >
+            <form style="height: 1000px;overflow:auto;width:100%;" >
+                <table class="table table-bordered" >
                     <thead>
                     <tr>
-                        <th>论文</th>
-                        <th>年份</th>
-                        <th>笔记</th>
+                        <th>意见人</th>
+                        <th>章节</th>
+                        <th>意见面向</th>
+                        <th>意见内容</th>
+                        <th>意见处理</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <div th:each="donenotes,iterStat:${donenotes}">
-                        <tr>
-                            <td th:text="${donenotes.author}"></td>
-                            <td th:text="${donenotes.year}"></td>
-                            <td th:text="${donenotes.note}"></td>
-                        </tr>
-                    </div>
+                    <tbody th:each="partnerOpts0,iterStat:${partnerOpts0}" id ="handleOpt">
+                    <tr>
+                        <td style="width: 80px" th:text="${partnerOpts0.myname}"></td>
+                        <td style="width: 60px" th:text="${partnerOpts0.chapter}"></td>
+                        <td style="width: 100px" th:text="${partnerOpts0.opt}"></td>
+                        <td th:text="${partnerOpts0.optcontent}"></td>
+                        <td style="width: 100px">
+                            <select th:id="${partnerOpts0.id}" class="form-control" th:name="${partnerOpts0.id}">
+                                <option th:name="${partnerOpts0.id}">待修改</option>
+                                <option th:name="${partnerOpts0.id}">已修改</option>
+                                <option th:name="${partnerOpts0.id}">不修改</option>
+                            </select>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
-            </div>
+                <div  style="height: 6px;"></div>
+                <button type="button" class="button center-block" th:onclick="|javascript:subwriteNote()|">提交</button>
+                <div  style="height: 6px;"></div>
+            </form>
         </div>
     </div>
 </div>
@@ -86,46 +86,30 @@
             $('.navbar-collapse').collapse('hide');
         });
     })
-    subpaper=function() {
-        var papercontent=$('#mycontent').val();
-        var chapter=$("#chpt").text();
-        length=fnGetCpmisWords(papercontent);
-        console.log(papercontent);
+    subwriteNote=function() {
+        var kv = new Array();
+        var sel= new Array();
+        $("#handleOpt option:checked").each(function(){
+            choicCheckOption=$(this).val();
+            var choicCheckname = $(this).attr("name");
+            kv.push(choicCheckname);
+            sel.push(choicCheckOption);
+        });
+
+        console.log(sel);
         $.ajax({
-            url: '/submyPaper',
+            url: '/subhandledOpt',
             data: {
-                papercontent: papercontent,
-                chapter:chapter,
-                wordnum:length,
-                state:0
+                name:kv,
+                handled:sel
             },
             dataType: 'json',
             type: 'post',
             success: function (data) {
                 console.log(data);
-                alert("提交成功")
-                window.location.href = '/writePaper?chapter='+chapter;
+                alert("记录成功")
             }
         });
-    }
-    function fnGetCpmisWords(str)
-    {
-        sLen = 0;
-        try {
-            //先将回车换行符做特殊处理
-            str = str.replace(/(\r\n+|\s+|　+)/g, "龘");
-            //处理英文字符数字，连续字母、数字、英文符号视为一个单词
-            str = str.replace(/[\x00-\xff]/g, "m");
-            //合并字符m，连续字母、数字、英文符号视为一个单词
-            str = str.replace(/m+/g, "*");
-            //去掉回车换行符
-            str = str.replace(/龘+/g, "");
-            //返回字数
-            sLen = str.length;
-        } catch (e) {
-
-        }
-        return sLen;
     }
 </script>
 </body>

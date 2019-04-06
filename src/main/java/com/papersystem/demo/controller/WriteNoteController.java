@@ -61,6 +61,7 @@ public class WriteNoteController {
              ) {
             System.out.println(s);
         }*/
+
         paperNote paperNote=new paperNote((String)userid,papername,grade,keywords,selfhelp,papernote);
         paperNoteService.savenote(paperNote);
         Map req=new HashMap();

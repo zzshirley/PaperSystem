@@ -13,20 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Xiaotong
  * @createTime 2019201 上午10:00
  * @description 目标设定
  */
-@Controller
+@RestController
 public class GoalSettingController {
 
     @Autowired
@@ -50,8 +48,8 @@ public class GoalSettingController {
             model.addAttribute("mygoals",true);
             model.addAttribute("stugoals",goalList);
         }
-        getgoals.info(userid+"点击目标设定");
-        getgoalsB.info(userid+"点击目标设定");
+        getgoals.info(userid+" 点击目标设定");
+        getgoalsB.info(userid+" 点击目标设定");
         ModelAndView mv = new ModelAndView("goalSetting");
         return mv;
     }
@@ -66,9 +64,35 @@ public class GoalSettingController {
         Logger subgoalsB=LogUtils.getBussinessLogger();
         Goal goal=new Goal((String)userid,date,chapter,wordnum,f.map.get(chapter));
         goalSettingService.saveGoals(goal);
-        subgoals.info(userid+",添加目标");
-        subgoalsB.info(userid+",添加目标");
+        subgoals.info(userid+" 添加目标");
+        subgoalsB.info(userid+" 添加目标");
         ModelAndView mv = new ModelAndView("redirect:goalSetting");
         return mv;
+    }
+    @RequestMapping("/delg")//根据id删除学生的关键词
+    public ModelAndView delG(HttpSession session,@RequestParam int id,@RequestParam String chapter) {
+
+        Object userid;
+        userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
+        Logger delkeyword= LogUtils.getBussinessLogger();
+        delkeyword.info(userid+" 删除目标 "+chapter);
+        goalSettingService.delGoals(id);
+        ModelAndView mv = new ModelAndView("redirect:goalSetting");
+        return mv;
+    }
+    @PostMapping("/updategoals")
+    public Map updateGoals(HttpSession session,Model model,@RequestParam String date,@RequestParam String word,@RequestParam String chapter,int id){
+
+        Object userid;
+        userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
+        Logger delkeyword= LogUtils.getBussinessLogger();
+        delkeyword.info(userid+" 更改目标 "+chapter);
+        Function f=new Function();
+        Goal goal=new Goal(id,(String)userid,date,chapter,word,f.map.get(chapter));
+        goalSettingService.saveGoals(goal);
+        Map req=new HashMap();
+        req.put("data","hello");
+        return req;
+
     }
 }

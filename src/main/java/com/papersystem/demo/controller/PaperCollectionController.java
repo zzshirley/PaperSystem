@@ -2,7 +2,6 @@ package com.papersystem.demo.controller;
 
 import com.papersystem.demo.Util.LogUtils;
 import com.papersystem.demo.bean.PaperCollection;
-import com.papersystem.demo.bean.Scholar;
 import com.papersystem.demo.config.WebSecurityConfig;
 import com.papersystem.demo.service.PaperCollectionService;
 import org.slf4j.Logger;
@@ -59,7 +58,7 @@ public class PaperCollectionController {
         papercollectionb.info(userid+"添加文献信息"+papername);
         PaperCollection pc =new PaperCollection((String)userid,papername,author,publication,year,lang,cited,url);
         paperCollectionService.saveCollection(pc);
-        ModelAndView  mv = new ModelAndView("redirect:scholar");
+        ModelAndView  mv = new ModelAndView("redirect:paperCollection");
         return mv;
 
     }

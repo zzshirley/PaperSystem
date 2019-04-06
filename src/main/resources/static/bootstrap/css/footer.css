@@ -1,7 +1,26 @@
+html, body {
+    margin: 0;/*清除默认样式*/
+    padding: 0;
+    height: 100%;
+}
 
+.container {
+    position: relative;
+    margin: 0 auto;
+    height: auto;
+    height: 100%;
+    min-height: 100%;
+}
+.footer {
+    position: absolute; /*相对于父元素contanier定位*/
+    width: 100%;
+    bottom: 0;/*始终距离它的父元素的底部为0px.则是处于父元素的最底*/
+}
 footer {
     font-weight: 500;
     text-align: center;
     padding: 20px;
+    position:relative;
+    width:100%;
 }
 

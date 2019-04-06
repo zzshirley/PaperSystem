@@ -26,6 +26,13 @@ public class PaperCollectionService {
     public List<PaperCollection> paperCollections(){
 
         List<PaperCollection> pc=paperCollectionRepo.findAll();
+
         return pc;
+    }
+
+    public List<PaperCollection> findpapersauthor(String papername){
+
+        List<PaperCollection> pa=paperCollectionRepo.findByPapername(papername);
+        return pa;
     }
 }

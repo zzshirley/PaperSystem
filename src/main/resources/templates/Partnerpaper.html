@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>伙伴的论文</title>
+    <!--Bootstrap-->
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="pagehead :: nav"></div><!-- end .header -->
+<div class="papers">
+    <div class="mypaper" style="padding-top: 80px">
+        <ul class="breadcrumb col-md-10 col-md-offset-1" style="padding-top: 7px">
+            <li class="active "><a href="companion.html.html">我的伙伴</a></li>
+        </ul>
+        <div class="container">
+            <div>
+                <h5 th:text="${pname}" style="font-size: 33px"></h5>
+                <h5 th:text="${title}" style="color: #0e90d2;font-size: 28px"></h5>
+                <div style="height: 6px"></div>
+                <div class="panel-info col-md-2" >
+                    <div th:each="wps:${wps}">
+                        <a th:href="@{'/Partnerpaper?partnerid='+${pid}+'&chapter='+${wps.chapter}+'&partnername='+${pname}}" th:text="${wps.chapter}"></a>
+                    </div>
+                </div>
+                <div th:if="${nothing}">
+                    <h4>什么也没有。。。</h4>
+                </div>
+                <div class="panel-info col-md-10" th:if="!${nothing}">
+                    <div class="col-md-6">
+                    <h4 th:text="${chapter}"></h4>
+                    <p th:text="${content}"></p>
+                    </div>
+                    <form class="col-md-6"  th:action="@{'/subfullopt?pid='+${pid}+'&pname='+${pname}+'&chapter='+${chapter}}" th:method="post">
+                        <h3 class="center-block" style="color: #0e90d2">我的意见</h3>
+                        <div class="form-group" >
+                            <label for="opt">意见面向</label>
+                            <select id="opt" class="form-control" name="opt">
+                                <option>文法语用</option>
+                                <option>连接转折</option>
+                                <option>组织架构</option>
+                                <option>语意逻辑</option>
+                                <option>支持证据</option>
+                                <option>其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="optcontent">意见内容</label>
+                            <textarea name="optcontent" class="form-control" id="optcontent" rows="4" cols="10" required
+                                      data-bv-notempty-message="不能为空"></textarea>
+                        </div>
+                        <div style="height: 7px"> </div>
+                        <button type="submit" class="btn btn-default center-block">提交</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    function checkradio(){
+        alert("注册成功️")
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

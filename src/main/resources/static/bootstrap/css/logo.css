@@ -1,6 +1,7 @@
-body {
-    font-family: 'Microsoft YaHei', sans-serif;
-    height: 500px;
+html, body {
+    margin: 0;/*清除默认样式*/
+    padding: 0;
+    height: 100%;
 }
 
 .mai-icon {
@@ -25,16 +26,16 @@ body {
     font-size: 30px;
     font-weight: bold;
     color: #00b0ff;
-    height: 70px;
-    line-height: 35px;
+    height: 60px;
+    line-height: 30px;
 }
 
 .navbar-default .navbar-nav > li > a {
     font-size: 16px;
     font-weight: bold;
     color: #666;
-    height: 70px;
-    line-height: 35px;
+    height: 60px;
+    line-height: 30px;
 }
 
 .navbar-toggle {
@@ -166,67 +167,6 @@ body {
 .button img {
     margin-right: 8px;
 }
-
-.pagination-wrapper {
-    text-align: center;
-}
-
-.pagination {
-    border: 3px solid #fafafa;
-    margin: 0;
-    margin-top: 60px;
-    position: relative;
-    padding: 0 60px;
-}
-
-.pagination > li > a, .pagination > li > span {
-    float: none;
-    padding: 0;
-    margin: 0 15px;
-    line-height: 74px;
-    color: #444;
-    background: none;
-    border: none;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-}
-
-.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
-    background: none;
-    color: #444;
-}
-
-.pagination > li.prev > a {
-    display: block;
-    width: 63px;
-    text-align: center;
-    line-height: 53px;
-    margin: 0;
-    position: absolute;
-    left: -38px;
-    top: 11px;
-    background: #00b0ff;
-    border-radius: 0;
-    color: #fff;
-    font-size: 16px;
-}
-
-.pagination > li.next > a {
-    display: block;
-    width: 63px;
-    text-align: center;
-    line-height: 53px;
-    margin: 0;
-    position: absolute;
-    right: -38px;
-    top: 11px;
-    background: #00b0ff;
-    border-radius: 0;
-    color: #fff;
-    font-size: 16px;
-}
-
 .share-button .social {
     position: absolute;
     top: 50%;
@@ -277,6 +217,8 @@ body {
         margin: 0 6px;
     }
 }
+
+main{padding-bottom:100px;}
 
 footer {
     font-weight: 500;

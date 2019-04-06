@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>论文撰写</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--BootstrapValidator-->
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <!--Font Awesome Icons-->
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="pagehead :: nav"></div><!-- end .header -->
+<div class="prepare">
+    <div class="inner">
+        <div class="container">
+            <div class="row">
+                <ul class="breadcrumb">
+                    <li><a href="MyPaper.html" >我的论文</a></li>
+                    <li class="active"><a >自评</a></li>
+                </ul>
+                <div th:switch="${something}">
+                    <div th:case="0">
+                    <center><h1  class="center-block" style="">什么也没写，怎么评呢亲～</h1>
+                    <img th:src="@{bootstrap/image/paperEmpty.JPG}" class="img-responsive" style="height: 400px;width: 400px"/>
+                    </center>
+                    </div>
+                    <div th:case="1">
+                        <div class=" panel col-md-10 col-md-offset-1" id="ct">
+                            <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}" id="chpt"></h3>
+                        </div>
+                        <form class="col-md-10 col-md-offset-1" th:action="@{'/subSelfeva?chapter='+${chapter}}" method="post">
+                            <div style="height: 7px"></div>
+                            <label for="score" >自评分数</label>
+                            <select id="score" class="form-control" name="score" style="padding-bottom: 7px">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                            <div style="height:7px"></div>
+                            <button type="submit" class="button center-block" >提交</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+
+<!--home-->
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script th:inline="javascript">
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    var papercontent = [[${content}]]
+    console.log(papercontent)
+    $("#ct").append(papercontent);
+
+</script>
+
+</body>
+</html>
