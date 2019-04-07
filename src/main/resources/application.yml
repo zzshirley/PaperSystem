@@ -2,10 +2,10 @@ spring:
   profiles:
     active: dev
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://118.24.187.136:3306/paper?useSSL=false&useUnicode=true&characterEncoding=UTF-8
-    username: lili
-    password: 1234asdf
+    driver-class-name: 
+    url: 
+    username: 
+    password: 
   jpa:
     hibernate:
       # create： 每次启动先删除表，再新建
