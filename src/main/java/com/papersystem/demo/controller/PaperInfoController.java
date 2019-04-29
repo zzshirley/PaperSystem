@@ -38,6 +38,10 @@ public class PaperInfoController {
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
 
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
+
         Logger prepare=LogUtils.getDBLogger();
         List<PaperInfo> paperInfoList=paperInfoService.findAllInfo();
         List<StuGoals> stuGoals=stuGoalsService.getStuGoals((String)userid);
@@ -48,12 +52,12 @@ public class PaperInfoController {
         }
 
         if(paperInfoList.isEmpty()){
-            prepare.info(userid+",查看投稿信息/前期准备");
+            prepare.info(userid+" 查看投稿信息/前期准备");
             ModelAndView mv = new ModelAndView("prepare");
             return mv;
         }
         else{
-            prepare.info(userid+",查看投稿信息/前期准备");
+            prepare.info(userid+" 查看投稿信息/前期准备");
             model.addAttribute("paperlist",paperInfoList);
             ModelAndView mv = new ModelAndView("prepare");
             return mv;

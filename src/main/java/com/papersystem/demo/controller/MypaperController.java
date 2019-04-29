@@ -52,6 +52,10 @@ public class MypaperController {
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger getgoals = LogUtils.getDBLogger();
         Logger getgoalsB = LogUtils.getBussinessLogger();
+
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
         List<Goal> goalList=goalSettingService.findGoals((String)userid);
         Map<String,Map> map=new HashMap<>();
         String title=papertitleService.findTitle((String)userid);

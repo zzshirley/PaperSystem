@@ -32,13 +32,13 @@
 <div class="writePaper">
     <div class="inner" style="margin-top:70px">
         <ul class="breadcrumb">
+            <li><a href="OptMonitor.html">意见监控</a></li>
             <li><a href="MyPaper.html">我的论文</a></li>
             <li><a href="companion.html">我的伙伴</a></li>
-            <li><a href="OptMonitor.html">意见监控</a></li>
             <li><a>处理意见</a></li>
         </ul>
         <div class="col-md-12">
-            <h3 class="center-block" style="color: #0e90d2">未处理意见</h3>
+            <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}"> 未处理意见</h3>
             <div  style="height: 6px;"></div>
 
             <!--这里加上是为了让提示信息显示 不然会被遮挡-->
@@ -80,12 +80,13 @@
     <div th:replace="footer :: footer"></div>
 </footer>
 <script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('.navbar-collapse a').click(function () {
             $('.navbar-collapse').collapse('hide');
         });
     })
+    chapter = [[${chapter}]];
     subwriteNote=function() {
         var kv = new Array();
         var sel= new Array();
@@ -101,7 +102,8 @@
             url: '/subhandledOpt',
             data: {
                 name:kv,
-                handled:sel
+                handled:sel,
+                chapter:chapter
             },
             dataType: 'json',
             type: 'post',

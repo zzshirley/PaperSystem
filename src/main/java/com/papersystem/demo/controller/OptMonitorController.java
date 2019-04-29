@@ -43,6 +43,10 @@ public class OptMonitorController {
 
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
+
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
         Logger optMonitor = LogUtils.getDBLogger();
         Logger optMonitorB = LogUtils.getBussinessLogger();
         List<Goal> goalList = goalSettingService.findGoals((String)userid);
@@ -51,12 +55,11 @@ public class OptMonitorController {
         for (Goal s:goalList
         ) {
             Map<String,String> arrys=new HashMap<>();
-            List<PartnerOpt> partnerOpts = partnerOptService.findMyACopt((String)userid,s.getChapter());
-            if (!partnerOpts.isEmpty()) {
-                arrys.put("opt",String.valueOf(partnerOpts.size()));
-            }else {
-                arrys.put("opt","0");
-            }
+            int len1 = partnerOptService.optlength((String)userid,"0",s.getChapter());
+            int len2 = partnerOptService.optlength((String)userid,"1",s.getChapter());
+            int len3 = partnerOptService.optlength((String)userid,"2",s.getChapter());
+            arrys.put("opt0",String.valueOf(len1));
+            arrys.put("opt12",String.valueOf(len2+len3));
             arrys.put("chp",s.getChapter());
             map.put("chp"+s.getCode(),arrys);
         }

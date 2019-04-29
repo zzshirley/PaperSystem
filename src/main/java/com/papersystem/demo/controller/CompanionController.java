@@ -47,6 +47,9 @@ public class CompanionController {
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger companion= LogUtils.getBussinessLogger();
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
         companion.info(userid+" 选择伙伴/查看伙伴 ");
         List<Companion> cp=companionService.findPartner((String)userid);
         if(cp==null){

@@ -4,7 +4,7 @@ import com.papersystem.demo.Util.LogUtils;
 import com.papersystem.demo.bean.PartnerOpt;
 import com.papersystem.demo.config.WebSecurityConfig;
 import com.papersystem.demo.service.PartnerOptService;
-import org.json.JSONArray;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
-import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
+
+
 import java.util.List;
-import java.util.Map;
+
 
 /**
  * @author Xiaotong
@@ -34,27 +34,31 @@ public class HandlingOptController {
     PartnerOptService partnerOptService;
 
     @RequestMapping("HandlingOpt")
-    public ModelAndView HandlingOpt(HttpSession session, Model model,Integer pagenum) {
+    public ModelAndView HandlingOpt(HttpSession session, Model model,String chapter) {
 
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger handlingOpt= LogUtils.getBussinessLogger();
-        handlingOpt.info(userid+" 处理意见 ");
-        int page = partnerOptService.page((String)userid,"0");
-        List<PartnerOpt> partnerOpts0 = partnerOptService.findOptByState((String)userid,"0" );
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
+        handlingOpt.info(userid+" 处理意见 "+ chapter);
+        List<PartnerOpt> partnerOpts0 = partnerOptService.findOptByState((String)userid,"0" ,chapter);
 
         model.addAttribute("partnerOpts0",partnerOpts0);
+        model.addAttribute("chapter",chapter);
 
         ModelAndView mv  = new ModelAndView("HandlingOpt");
         return mv;
     }
     @PostMapping("/subhandledOpt")
-    public String HandledOpt(HttpSession session,@RequestParam("name[]") List<Integer> name,@RequestParam("handled[]") List<String> handle) {
+    public String HandledOpt(HttpSession session,@RequestParam("name[]") List<Integer> name,@RequestParam("handled[]") List<String> handle,@RequestParam String chapter) {
 
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger handledOpt= LogUtils.getBussinessLogger();
-        handledOpt.info(userid+" 提交处理意见 ");
+        handledOpt.info(userid+" 提交处理意见 "+chapter);
+
         for (int i= 0;i < name.size(); i++) {//0-待修改，1-已修改，2-不修改
             if(handle.get(i).equals("待修改")) {
 

@@ -51,7 +51,7 @@
                 <div class="panel-info col-md-10" th:if="!${nothing}">
                     <div class="col-md-6">
                     <h4 th:text="${chapter}"></h4>
-                    <p th:text="${content}"></p>
+                    <p  id="context"></p>
                     </div>
                     <form class="col-md-6"  th:action="@{'/subfullopt?pid='+${pid}+'&pname='+${pname}+'&chapter='+${chapter}}" th:method="post">
                         <h3 class="center-block" style="color: #0e90d2">我的意见</h3>
@@ -83,16 +83,27 @@
     <div th:replace="footer :: footer"></div>
 </footer>
 <script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('.navbar-collapse a').click(function () {
             $('.navbar-collapse').collapse('hide');
         });
     })
+    var papercontent = [[${content}]]
+    $("#context").html(toTextarea(papercontent));
     function checkradio(){
         alert("注册成功️")
 
         return true;
+    }
+    function toTextarea(str){
+        var reg=new RegExp("<br>","g");
+        var regSpace=new RegExp("&nbsp;","g");
+
+        str = str.replace(reg,"\n");
+        str = str.replace(regSpace," ");
+
+        return str;
     }
 </script>
 

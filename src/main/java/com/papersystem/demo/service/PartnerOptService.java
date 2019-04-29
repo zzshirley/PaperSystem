@@ -38,16 +38,18 @@ public class PartnerOptService {
     public List findMyACopt(String partner,String chapter) {
         return partneroptRepo.findByPartnerAndChapter(partner,chapter);
     }
-
-    public int page(String partner,String state) {
-        return partneroptRepo.countAllByPartnerAndState(partner,state);
-    }
-    public List<PartnerOpt> findOptByState(String partner, String state) {
-      //  Pageable pageable = new PageRequest(0,page-1,Direction.DESC,"stuid");
-
-        return partneroptRepo.findByPartnerAndState(partner,state);
+    public List<PartnerOpt> findOptByState(String partner, String state,String chapter) {
+        return partneroptRepo.findByPartnerAndStateAndChapter(partner,state,chapter);
     }
     public PartnerOpt findByid(int id) {
+
         return partneroptRepo.findById(id).get(0);
+    }
+
+    public int optlength( String partner,String state,String chapter) {
+
+        List<PartnerOpt> partnerOptList = partneroptRepo.findByPartnerAndStateAndChapter(partner,state,chapter);
+        int len = partnerOptList.isEmpty() ? 0 : partnerOptList.size();
+        return len;
     }
 }

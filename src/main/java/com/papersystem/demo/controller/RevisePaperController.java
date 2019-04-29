@@ -46,7 +46,10 @@ public class RevisePaperController {
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger subNote = LogUtils.getBussinessLogger();
-        subNote.info(userid+"看意见修改论文 " + chapter);
+        subNote.info(userid+" 看意见修改论文 " + chapter);
+        if ((userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
 
         List<Map> mapList = new ArrayList<>();
         List<WritePaper> papercontent = writePaperService.findStusNote((String)userid,chapter);

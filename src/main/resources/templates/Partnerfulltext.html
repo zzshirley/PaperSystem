@@ -37,51 +37,49 @@
         </ul>
         <div class="container">
             <div class="row">
-                <div class="">
-                    <div class="col-md-6">
-                        <h3 class="center-block" style="color: #0e90d2" th:text="${pname}"></h3>
-                        <div  style="height: 6px;"></div>
-                        <div th:if="${nothing}">
-                            <h3>他/她还什么也没写。。。</h3>
-                        </div>
-                        <h2 th:text="${ptitle}"></h2>
-                        <div th:each="paper:${paper}">
-                            <h3 th:text="${paper.chapter}"></h3>
-                            <p th:text="${paper.content}"></p>
-                        </div>
-
+                <div class="col-md-6">
+                    <h3 class="center-block" style="color: #0e90d2" th:text="${pname}"></h3>
+                    <div  style="height: 6px;"></div>
+                    <div th:if="${nothing}">
+                        <h3>他/她还什么也没写。。。</h3>
                     </div>
-                    <form class="col-md-6"  th:action="@{'/subfullopt?pid='+${pid}+'&pname='+${pname}}" th:method="post">
-                        <div  style="height: 30px;"></div>
-                        <h3 class="center-block" style="color: #0e90d2">我的意见</h3>
-                        <div class="form-group">
-                            <label for="chapter">章节</label>
-                            <select id="chapter" class="form-control" name="chapter">
-                                <div th:each="paper:${paper}">
-                                    <option th:text="${paper.chapter}"></option>
-                                </div>
-                            </select>
-                        </div>
-                        <div class="form-group" >
-                            <label for="opt">意见面向</label>
-                            <select id="opt" class="form-control" name="opt">
-                                <option>文法语用</option>
-                                <option>连接转折</option>
-                                <option>组织架构</option>
-                                <option>语意逻辑</option>
-                                <option>支持证据</option>
-                                <option>其他</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="optcontent">意见内容</label>
-                            <textarea name="optcontent" class="form-control" id="optcontent" rows="4" cols="10" required
-                                      data-bv-notempty-message="不能为空"></textarea>
-                        </div>
-                        <div style="height: 7px"> </div>
-                        <button type="submit" class="btn btn-default center-block">提交</button>
-                    </form>
+                    <h2 th:text="${ptitle}"></h2>
+                    <div th:each="paper:${paper}">
+                        <h3 th:text="${paper.chapter}"></h3>
+                        <p th:utext="${paper.content}"></p>
+                    </div>
+
                 </div>
+                <form class="col-md-6"  th:action="@{'/subfullopt?pid='+${pid}+'&pname='+${pname}}" th:method="post">
+                    <div  style="height: 30px;"></div>
+                    <h3 class="center-block" style="color: #0e90d2">我的意见</h3>
+                    <div class="form-group">
+                        <label for="chapter">章节</label>
+                        <select id="chapter" class="form-control" name="chapter">
+                            <div th:each="paper:${paper}">
+                                <option th:text="${paper.chapter}"></option>
+                            </div>
+                        </select>
+                    </div>
+                    <div class="form-group" >
+                        <label for="opt">意见面向</label>
+                        <select id="opt" class="form-control" name="opt">
+                            <option>文法语用</option>
+                            <option>连接转折</option>
+                            <option>组织架构</option>
+                            <option>语意逻辑</option>
+                            <option>支持证据</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="optcontent">意见内容</label>
+                        <textarea name="optcontent" class="form-control" id="optcontent" rows="4" cols="10" required
+                                  data-bv-notempty-message="不能为空"></textarea>
+                    </div>
+                    <div style="height: 7px"> </div>
+                    <button type="submit" class="btn btn-default center-block">提交</button>
+                </form>
             </div>
         </div>
     </div>
@@ -120,6 +118,19 @@
 
         return true;
     }
+    function toTextarea(str){
+        var reg=new RegExp("<br>","g");
+        var regSpace=new RegExp("&nbsp;","g");
+
+        str = str.replace(reg,"\n");
+        str = str.replace(regSpace," ");
+
+        return str;
+    }
+    function papercontent(text) {
+        $("#content").html(text);
+
+    }
     subCompanion=function() {
 
         var stuid="";
@@ -143,7 +154,6 @@
 
             }
         });
-
     }
 </script>
 

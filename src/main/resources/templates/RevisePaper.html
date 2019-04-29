@@ -33,9 +33,9 @@
 <div class="writePaper">
     <div class="inner" style="margin-top:70px">
         <ul class="breadcrumb">
+            <li><a href="OptMonitor.html" style="font-size: 25px">意见监控</a></li>
             <li><a href="MyPaper.html">我的论文</a></li>
             <li><a href="companion.html">我的伙伴</a></li>
-            <li><a href="OptMonitor.html">意见监控</a></li>
             <li class="active "><a href="">修改论文</a></li>
         </ul>
         <form class="col-md-6">
@@ -44,7 +44,7 @@
 
             <!--这里加上是为了让提示信息显示 不然会被遮挡-->
             <div>
-                <textarea id="mycontent" th:text="${content}"  rows="10" cols="10" style="border-style: outset;border-color: #b8daff">
+                <textarea id="revisemycontent"  rows="10" cols="10" style="border-style: outset;border-color: #b8daff">
 
                 </textarea>
             </div>
@@ -81,21 +81,32 @@
     <div th:replace="footer :: footer"></div>
 </footer>
 <script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('.navbar-collapse a').click(function () {
             $('.navbar-collapse').collapse('hide');
         });
+        var content = toTextarea([[${content}]]);
+        $("#revisemycontent").text(content);
     })
+    function toTextarea(str){
+        var reg=new RegExp("<br>","g");
+        var regSpace=new RegExp("&nbsp;","g");
+
+        str = str.replace(reg,"\n");
+        str = str.replace(regSpace," ");
+
+        return str;
+    }
     subpaper=function() {
         var papercontent=$('#mycontent').val();
         var chapter=$("#chpt").text();
-        length=fnGetCpmisWords(papercontent);
+        length=fnGetCpmisWords(textareaTo(papercontent));
         console.log(papercontent);
         $.ajax({
             url: '/submyPaper',
             data: {
-                papercontent: papercontent,
+                papercontent: textareaTo(papercontent),
                 chapter:chapter,
                 wordnum:length,
                 state:1
@@ -109,6 +120,7 @@
             }
         });
     }
+
     function fnGetCpmisWords(str)
     {
         sLen = 0;

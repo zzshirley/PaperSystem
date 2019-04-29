@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>学生论文</title>
+    <!--Bootstrap-->
+    <link href="../bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/bootstrap/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../bootstrap/bootstrapvalidator/dist/css/bootstrapValidator.css"/>
+
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../bootstrap/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+
+    <link href="../bootstrap/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- PE Icon 7 Stoke -->
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="../bootstrap/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet">
+    <!-- Quicksand Dash -->
+    <link href="../bootstrap/fonts/quicksand-dash/stylesheet.css" rel="stylesheet">
+    <!-- Owl Carousel -->
+    <link href="../bootstrap/css/owl.carousel.css" rel="stylesheet">
+    <link href="../bootstrap/css/owl.theme.default.css" rel="stylesheet">
+    <!-- Style.css -->
+    <!--link href="../static/bootstrap/css/bootstrap-maizi.css" rel="stylesheet"-->
+    <link href="../bootstrap/css/logo.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="pagehead :: nav"></div><!-- end .header -->
+<div class="papers">
+    <div class="mypaper" style="padding-top: 80px">
+        <ul class="breadcrumb col-md-10 col-md-offset-1" style="padding-top: 7px">
+            <li class="active "><a href="MyPaper.html">我的论文</a></li>
+        </ul>
+        <div class="container">
+            <tr class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <a data-toggle="modal" data-target="#title" href="javascript:void(0)" th:text="${name}" style="color: #0e90d2;font-size: 33px"></a>
+                    <div style="height: 6px"></div>
+                    <h5>笔记完成数：<h4 th:text="${notes}"></h4></h5>
+                    <div class="panel-info">
+                        <table class="table table-bordered ">
+                            <thead>
+                            <tr>
+                                <th>章节</th>
+                                <th>完成字数/目标字数</th>
+                                <th>自评分数</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${map['chp0']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'摘要'}">摘要</a></td>
+                                <td><h5 th:text="${map['chp0']['realnum']}+'/'+${map['chp0']['words']}"></h5></td>
+                                <td><p th:text="${map['chp0']['selfeva']}"></p></td>
+                            </tr>
+                            <tr><td><a href="keyword.html">关键字</a></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr th:if="${map['chp1']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'引言'}" >引言</a></td>
+                                <td><h5 th:text="${map['chp1']['realnum']}+'/'+${map['chp1']['words']}"></h5></td>
+                                <td><p th:text="${map['chp1']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp2']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'相关研究'}">相关研究</a></td>
+                                <td><h5 th:text="${map['chp2']['realnum']}+'/'+${map['chp2']['words']}"></h5></td>
+                                <td><p th:text="${map['chp2']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp3']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'研究主体'}">研究主体</a></td>
+                                <td><h5 th:text="${map['chp3']['realnum']}+'/'+${map['chp3']['words']}"></h5></td>
+                                <td><p th:text="${map['chp3']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp4']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'研究方法'}">研究方法</a></td>
+                                <td><h5 th:text="${map['chp4']['realnum']}+'/'+${map['chp4']['words']}"></h5></td>
+                                <td><p th:text="${map['chp4']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp5']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'研究结果'}">研究结果</a></td>
+                                <td><h5 th:text="${map['chp5']['realnum']}+'/'+${map['chp5']['words']}"></h5></td>
+                                <td><p th:text="${map['chp5']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp6']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'讨论'}">讨论</a></td>
+                                <td><h5 th:text="${map['chp6']['realnum']}+'/'+${map['chp6']['words']}"></h5></td>
+                                <td><p th:text="${map['chp6']['selfeva']}"></p></td>
+                            </tr>
+                            <tr th:if="${map['chp7']}!=null">
+                                <td><a th:href="@{'/writePaper?chapter='+'结论'}">结论</a></td>
+                                <td><h5 th:text="${map['chp7']['realnum']}+'/'+${map['chp7']['words']}"></h5></td>
+                                <td><p th:text="${map['chp7']['selfeva']}"></p></td>
+                            </tr>
+                            <tr><td><p>参考文献</p></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div th:replace="footer :: footer"></div>
+</footer>
+<script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
+<script>
+    $(function () {
+        $('.navbar-collapse a').click(function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+    })
+    function checkradio(){
+        alert("注册成功️")
+
+        return true;
+    }
+</script>
+
+</body>
+</html>

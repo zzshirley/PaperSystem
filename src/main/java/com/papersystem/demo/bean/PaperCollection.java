@@ -136,4 +136,19 @@ public class PaperCollection {
     public void setPaperurl(String paperurl) {
         this.paperurl = paperurl;
     }
+
+    @Override
+    public String toString() {
+        return "PaperCollection{" +
+                "id=" + id +
+                ", stuid='" + stuid + '\'' +
+                ", papername='" + papername + '\'' +
+                ", author='" + author + '\'' +
+                ", publication='" + publication + '\'' +
+                ", year='" + year + '\'' +
+                ", lang='" + lang + '\'' +
+                ", cited='" + cited + '\'' +
+                ", paperurl='" + paperurl + '\'' +
+                '}';
+    }
 }

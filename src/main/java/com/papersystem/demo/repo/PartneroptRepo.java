@@ -28,9 +28,9 @@ public interface PartneroptRepo extends JpaRepository<PartnerOpt,Integer> , JpaS
     List<PartnerOpt> findByStuid(String stuid);
     List<PartnerOpt> findByPartnerAndChapter(String partner,String chapter);
 
-    int countAllByPartnerAndState(String partner,String state);
     List<PartnerOpt> findById(int id);
     List<PartnerOpt> findByPartnerAndState(String partner,String state);
+    List<PartnerOpt> findByPartnerAndStateAndChapter(String partner,String state,String chapter);
 
 
 }

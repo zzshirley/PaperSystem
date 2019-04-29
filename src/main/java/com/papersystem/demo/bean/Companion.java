@@ -92,5 +92,14 @@ public class Companion {
         this.pname = pname;
     }
 
-
+    @Override
+    public String toString() {
+        return "Companion{" +
+                "id=" + id +
+                ", stuid='" + stuid + '\'' +
+                ", partner='" + partner + '\'' +
+                ", pname='" + pname + '\'' +
+                ", date='" + date + '\'' +
+                '}';
+    }
 }

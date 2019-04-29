@@ -38,6 +38,10 @@ public class GoalSettingController {
         Logger getgoals = LogUtils.getDBLogger();
         Logger getgoalsB = LogUtils.getBussinessLogger();
 
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
+
         List<Goal> goalList=goalSettingService.findGoals((String)userid);
         if(goalList.isEmpty()){
             model.addAttribute("nonegoals",true);
@@ -59,6 +63,10 @@ public class GoalSettingController {
 
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
+
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
         Function f=new Function();
         Logger subgoals=LogUtils.getDBLogger();
         Logger subgoalsB=LogUtils.getBussinessLogger();

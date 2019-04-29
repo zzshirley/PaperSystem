@@ -33,10 +33,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html">首页</a></li>
-                <li ><a href="prepare.html" class="active">前期准备</a></li>
+                <li ><a href="prepare.html" class="active">文献与目标</a></li>
                 <li><a href="MyPaper.html">论文撰写</a></li>
-                <li><a href="companion.html">阅读与评价</a></li>
-                <li><a th:href="@{/admin}" th:text="${admin}"></a></li>
+                <li><a href="companion.html">意见与修改</a></li>
+                <li><a th:if="${admin}" href="inspection.html">检查</a></li>
             </ul>
         </div>
         <!--导航-->

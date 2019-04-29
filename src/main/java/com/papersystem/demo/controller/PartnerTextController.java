@@ -22,7 +22,7 @@ import java.util.*;
  * @description 伙伴评价
  */
 @RestController
-public class PartnerOptController {
+public class PartnerTextController {
 
 
     @Autowired
@@ -61,6 +61,7 @@ public class PartnerOptController {
             model.addAttribute("nothing",true);
         }else {
             model.addAttribute("paper",wps);
+
         }
         ModelAndView mv = new ModelAndView("Partnerfulltext");
         return mv;
@@ -113,7 +114,7 @@ public class PartnerOptController {
                 model.addAttribute("content",papercontent.get(papercontent.size()-1).getContent());
             }
         }
-        ModelAndView mv = new ModelAndView("/Partnerpaper");
+        ModelAndView mv = new ModelAndView("Partnerpaper");
         return mv;
     }
 
@@ -131,5 +132,4 @@ public class PartnerOptController {
         ModelAndView mv = new ModelAndView("redirect:companion");
         return mv;
     }
-
 }

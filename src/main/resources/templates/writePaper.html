@@ -43,7 +43,7 @@
 
             <!--这里加上是为了让提示信息显示 不然会被遮挡-->
             <div>
-                <textarea id="mycontent" th:text="${content}"  rows="10" cols="10" style="border-style: outset;border-color: #b8daff">
+                <textarea id="mycontent"  rows="10" cols="10" style="border-style: outset;border-color: #b8daff">
 
                 </textarea>
             </div>
@@ -80,21 +80,41 @@
     <div th:replace="footer :: footer"></div>
 </footer>
 <script src="../bootstrap/js/jquery.singlePageNav.min.js"></script>
-<script>
+<script th:inline="javascript">
     $(function () {
         $('.navbar-collapse a').click(function () {
             $('.navbar-collapse').collapse('hide');
         });
+        var content = toTextarea([[${content}]]);
+        $("#mycontent").text(content);
     })
+    function toTextarea(str){
+        var reg=new RegExp("<br>","g");
+        var regSpace=new RegExp("&nbsp;","g");
+
+        str = str.replace(reg,"\n");
+        str = str.replace(regSpace," ");
+
+        return str;
+    }
+    function textareaTo(str){
+        var reg=new RegExp("\n","g");
+        var regSpace=new RegExp(" ","g");
+
+        str = str.replace(reg,"<br>");
+        str = str.replace(regSpace,"&nbsp;");
+
+        return str;
+    }
     subpaper=function() {
         var papercontent=$('#mycontent').val();
         var chapter=$("#chpt").text();
-        length=fnGetCpmisWords(papercontent);
+        length=fnGetCpmisWords(textareaTo(papercontent));
         console.log(papercontent);
         $.ajax({
             url: '/submyPaper',
             data: {
-                papercontent: papercontent,
+                papercontent: textareaTo(papercontent),
                 chapter:chapter,
                 wordnum:length,
                 state:0

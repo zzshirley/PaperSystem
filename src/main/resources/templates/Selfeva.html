@@ -43,9 +43,17 @@
                     </center>
                     </div>
                     <div th:case="1">
-                        <div class=" panel col-md-10 col-md-offset-1" id="ct">
-                            <h3 class="center-block" style="color: #0e90d2" th:text="${chapter}" id="chpt"></h3>
+                        <div class="row">
+                            <div class="container col-md-10 col-md-offset-1">
+                                <div class="panel panel-default">
+                                    <h3 class="center-block " style="color: #0e90d2; margin-left:10px" th:text="${chapter}" id="chpt"></h3>
+                                    <div class="panel-body" id="ct">
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
                         <form class="col-md-10 col-md-offset-1" th:action="@{'/subSelfeva?chapter='+${chapter}}" method="post">
                             <div style="height: 7px"></div>
                             <label for="score" >自评分数</label>
@@ -83,9 +91,16 @@
         });
     })
     var papercontent = [[${content}]]
-    console.log(papercontent)
-    $("#ct").append(papercontent);
+    $("#ct").html(toTextarea(papercontent));
+    function toTextarea(str){
+        var reg=new RegExp("<br>","g");
+        var regSpace=new RegExp("&nbsp;","g");
 
+        str = str.replace(reg,"\n");
+        str = str.replace(regSpace," ");
+
+        return str;
+    }
 </script>
 
 </body>

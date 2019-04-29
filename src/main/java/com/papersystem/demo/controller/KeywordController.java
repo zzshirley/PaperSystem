@@ -36,6 +36,9 @@ public class KeywordController {
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger keyword= LogUtils.getBussinessLogger();
         keyword.info(userid+"添加关键词/查看关键词");
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
 
         List<KeyWords> keyWordsList=keyWordService.getKeyWords((String)userid);
         List<KeyWords> keyWordsList0=new ArrayList<>();//中文关键词

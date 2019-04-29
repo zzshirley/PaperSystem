@@ -36,9 +36,12 @@ public class AddInfoController {
     private LoginService loginService;
 
     @RequestMapping("/addinfo")
-    public ModelAndView addInfo(HttpSession session){
+    public ModelAndView addInfo(HttpSession session,Model model){
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
         Logger addinfo= LogUtils.getDBLogger();
         addinfo.info(userid+",企图添加投稿信息");
         Logger addinfoB= LogUtils.getBussinessLogger();
@@ -55,6 +58,10 @@ public class AddInfoController {
 
         Logger subinfo=LogUtils.getDBLogger();
         Logger subinfoB=LogUtils.getBussinessLogger();
+
+        if (((String)userid).equals("admin")){
+            model.addAttribute("admin",true);
+        }
 
         boolean judgemeeting=paperInfoService.judgemeeting(meetingname);
         ArrayList<String> meetgrade=new ArrayList<String>();

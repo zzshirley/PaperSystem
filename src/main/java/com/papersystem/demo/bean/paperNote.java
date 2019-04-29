@@ -129,4 +129,18 @@ public class paperNote {
     public void setPaperauthor(String paperauthor) {
         this.paperauthor = paperauthor;
     }
+
+    @Override
+    public String toString() {
+        return "paperNote{" +
+                "id=" + id +
+                ", stuid='" + stuid + '\'' +
+                ", paperid='" + paperid + '\'' +
+                ", grade='" + grade + '\'' +
+                ", rkeyword='" + rkeyword + '\'' +
+                ", selfhelp='" + selfhelp + '\'' +
+                ", notetext='" + notetext + '\'' +
+                ", paperauthor='" + paperauthor + '\'' +
+                '}';
+    }
 }

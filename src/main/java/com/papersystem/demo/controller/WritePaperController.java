@@ -49,7 +49,7 @@ public class WritePaperController {
         Object userid;
         userid=session.getAttribute(WebSecurityConfig.SESSION_KEY);
         Logger subNote= LogUtils.getBussinessLogger();
-        subNote.info(userid+"撰写论文 "+chapter);
+        subNote.info(userid+" 撰写论文 "+chapter);
         List<paperNote> paperNotes=paperNoteService.papernote((String)userid);
         List<paperNote> paperNoteList=new ArrayList<>();
         List<Map> mapList=new ArrayList<>();
@@ -58,25 +58,29 @@ public class WritePaperController {
             model.addAttribute("nonenote",true);
         }else{
             for(paperNote p:paperNotes){
-                if(p.getSelfhelp()==""){
+                if(p.getSelfhelp() == ""){
                     paperNoteList.add(p);
                 }else {
                     List<String> list= Arrays.asList(p.getSelfhelp().split(" "));
                     for (String s:list
                     ) {
                         if (s.equals(chapter)){
+                            System.out.println("s:"+s);
                             paperNoteList.add(p);
                         }
                     }
                 }
             }
             for (paperNote p:paperNoteList){
-                Map pl=new HashMap();
                 List<PaperCollection> paperCollections=paperCollectionService.findpapersauthor(p.getPaperid());
-                pl.put("author",paperCollections.get(0).getAuthor());
-                pl.put("year",paperCollections.get(0).getYear());
-                pl.put("note",p.getNotetext());
-                mapList.add(pl);
+                if (!paperCollections.isEmpty()) {
+                    Map pl=new HashMap();
+                    pl.put("author",paperCollections.get(0).getAuthor());
+                    pl.put("year",paperCollections.get(0).getYear());
+                    pl.put("note",p.getNotetext());
+                    mapList.add(pl);
+                }
+
             }
         }
         model.addAttribute("chapter",chapter);
