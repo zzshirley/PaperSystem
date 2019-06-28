@@ -32,5 +32,6 @@ public interface PartneroptRepo extends JpaRepository<PartnerOpt,Integer> , JpaS
     List<PartnerOpt> findByPartnerAndState(String partner,String state);
     List<PartnerOpt> findByPartnerAndStateAndChapter(String partner,String state,String chapter);
 
-
+    int countByStuid(String stuid);
+    int countByPartner(String pid);
 }

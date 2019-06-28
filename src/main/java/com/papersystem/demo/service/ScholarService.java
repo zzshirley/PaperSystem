@@ -32,4 +32,8 @@ public class ScholarService {
     public void delScholar(int id){
         scholarRepo.delete(id);
     }
+
+    public int numScholar(String stuid) {
+        return scholarRepo.countByStuid(stuid);
+    }
 }

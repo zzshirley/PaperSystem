@@ -33,10 +33,10 @@
 <section id="home">
     <div class="lvjing">
         <div class="container">
-            <div class="row wow fadeInUp" data-wow-duration="1s"
-                 data-wow-delay="1s">
-                <div class="col-md-6" style="margin-top: 100px">
-                    <table>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>完成情况</h3>
+                    <table class="table" style="font-size: large">
                         <thead>
                         <tr class="info">
                             <th></th>
@@ -44,9 +44,82 @@
                             <th>指标数量</th>
                         </tr>
                         </thead>
+                        <tbody>
+                        <tr>
+                            <td>剩余时间</td>
+                            <td th:text="${remainingdays}"></td>
+                            <td>2019/5/27</td>
+                        </tr>
+                        <tr>
+                            <td>关键词</td>
+                            <td th:text="${keyword}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>学者名单</td>
+                            <td th:text="${scholar}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>文献笔记</td>
+                            <td th:if="${tnote} == ${notenum}" th:text="${notenum}" style="color: green"></td>
+                            <td th:if="${tnote} > ${notenum}" th:text="${notenum}" style="color: red"></td>
+                            <td th:if="${tnote} < ${notenum}" th:text="${notenum}" style="color: blue"></td>
+                            <td th:text="${tnote}" ></td>
+                        </tr>
+                        <tr>
+                            <td>目标进度</td>
+                            <td th:text="${papernum}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>论文进度</td>
+                            <td th:if="${nplan} == ${plan}" th:text="${nplan}+'%'" style="color: green"></td>
+                            <td th:if="${nplan} < ${plan}" th:text="${nplan}+'%'" style="color: red"></td>
+                            <td th:if="${nplan} > ${plan}" th:text="${nplan}+'%'" style="color: blue"></td>
+                            <td th:text="${plan}+'%'"></td>
+                        </tr>
+                        <tr>
+                            <td>自我评价</td>
+                            <td th:text="${selfevanum}"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>提出意见</td>
+                            <td th:if="${toptnum} == ${goptnum}" th:text="${goptnum}" style="color: green"></td>
+                            <td th:if="${toptnum} > ${goptnum}" th:text="${goptnum}" style="color: red"></td>
+                            <td th:if="${toptnum} < ${goptnum}" th:text="${goptnum}" style="color: blue"></td>
+                            <td th:text="${toptnum}"></td>
+                        </tr>
+                        <tr>
+                            <td>收到意见</td>
+                            <td th:if="${toptnum} == ${roptnum}" th:text="${roptnum}" style="color: green"></td>
+                            <td th:if="${toptnum} > ${roptnum}" th:text="${roptnum}" style="color: red"></td>
+                            <td th:if="${toptnum} < ${roptnum}" th:text="${roptnum}" style="color: blue"></td>
+                            <td th:text="${toptnum}"></td>
+                        </tr>
 
-
+                        <tr>
+                            <td>待处理意见</td>
+                            <td th:text="${ucopt}"></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
                     </table>
+                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div th:if="${nothing}">
+                                <h3>他/她还什么也没写。。。</h3>
+                            </div>
+                            <h2 th:text="${ptitle}"></h2>
+                            <div th:each="paper:${paper}">
+                                <h3 th:text="${paper.chapter}"></h3>
+                                <p th:utext="${paper.content}"></p>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

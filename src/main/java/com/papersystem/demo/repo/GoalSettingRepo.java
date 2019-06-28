@@ -23,4 +23,5 @@ public interface GoalSettingRepo extends JpaRepository<Goal,String> {
     void delete(Integer id);
 
     List<Goal> findAllByStuidOrderByCode(String stuid);
+    List<Goal> findByStuidAndCode(String stuid,String code);
 }

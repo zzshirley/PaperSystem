@@ -23,4 +23,5 @@ public interface paperNoteRepo extends JpaRepository<paperNote,String> {
     void delete(Integer id);
 
     List<paperNote> findByStuid(String stuid);
+    int countByStuid(String stuid);
 }

@@ -23,4 +23,5 @@ public interface ScholarRepo extends JpaRepository<Scholar,String> {
     void delete(Integer id);
 
     List<Scholar> findByStuid(String stuid);
+    int countByStuid(String stuid);
 }

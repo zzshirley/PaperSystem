@@ -77,7 +77,7 @@ public class GoalSettingController {
         ModelAndView mv = new ModelAndView("redirect:goalSetting");
         return mv;
     }
-    @RequestMapping("/delg")//根据id删除学生的关键词
+    @RequestMapping("/delg")//根据id删除学生的目标
     public ModelAndView delG(HttpSession session,@RequestParam int id,@RequestParam String chapter) {
 
         Object userid;

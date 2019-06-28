@@ -47,4 +47,8 @@ public class KeyWordService {
 
         keyWordRepo.delete(id);
     }
+    public int Keywordsnum(String usrid) {
+
+        return keyWordRepo.countByStuid(usrid);
+    }
 }

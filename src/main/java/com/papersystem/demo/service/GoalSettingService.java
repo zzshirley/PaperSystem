@@ -34,5 +34,16 @@ public class GoalSettingService {
         goalSettingRepo.delete(id);
     }
 
+    public int goalsnum(String stuid) {
+        String[] s={"1","2","3","4","5","6","7"};
+        int num = 0;
+        for(int i=0;i<s.length;i++){
+            List<Goal> goals = goalSettingRepo.findByStuidAndCode(stuid, s[i]);
+            if (!goals.isEmpty()) {
+                num = num +Integer.valueOf(goals.get(goals.size()-1).getWords());
+            }
+        }
+        return num;
+    }
 
 }

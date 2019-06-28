@@ -33,4 +33,30 @@ public class SelfevaService {
             return selfevaList.get(selfevaList.size()-1).getScore();
         }
     }
+    public double selfeva(String stuid) {
+
+        double score = 0.00;
+        int num = 0;
+        List<Selfeva> selfevaList  = selfevaRepo.findByStuid(stuid);
+        if (!selfevaList.isEmpty()) {
+            for (Selfeva s:selfevaList) {
+                if (s.getScore()!= null) {
+                    score = score + Integer.valueOf(s.getScore());
+                    num ++;
+                }
+            }
+            score = score / num;
+        }
+        return score;
+        /*String[] s={"0","1","2","3","4","5","6","7"};
+        int num = 0;
+        int score = 0;
+        for (int i = 0; i < s.length;i++) {
+            List<Selfeva> sv = selfevaRepo.findByStuidAndCid(stuid,s[i]);
+            if (!sv.isEmpty()) {
+                num++;
+                score = score
+            }
+        }*/
+    }
 }

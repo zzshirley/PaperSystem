@@ -15,4 +15,6 @@ import java.util.List;
 public interface SelfevaRepo extends JpaRepository<Selfeva,String> {
 
     List<Selfeva> findByStuidAndChapter(String stuid,String chapter);
+    List<Selfeva> findByStuidAndCid(String stuid,String cid);
+    List<Selfeva> findByStuid(String stuid);
 }

@@ -36,6 +36,7 @@ public class PartnerOptService {
     }
 
     public List findMyACopt(String partner,String chapter) {
+
         return partneroptRepo.findByPartnerAndChapter(partner,chapter);
     }
     public List<PartnerOpt> findOptByState(String partner, String state,String chapter) {
@@ -46,10 +47,27 @@ public class PartnerOptService {
         return partneroptRepo.findById(id).get(0);
     }
 
-    public int optlength( String partner,String state,String chapter) {
+    public int optlength(String partner,String state,String chapter) {
 
         List<PartnerOpt> partnerOptList = partneroptRepo.findByPartnerAndStateAndChapter(partner,state,chapter);
         int len = partnerOptList.isEmpty() ? 0 : partnerOptList.size();
         return len;
+    }
+
+    public int optnum(String stuid) {
+
+        return partneroptRepo.countByStuid(stuid);
+    }
+
+    public int roptnum(String stuid) {
+        return partneroptRepo.countByPartner(stuid);
+    }
+
+    public int uncheckopt(String stuid) {
+        List<PartnerOpt> opts = partneroptRepo.findByPartnerAndState(stuid,"0");
+        if (!opts.isEmpty()) {
+            return opts.size();
+        }
+        return 0;
     }
 }

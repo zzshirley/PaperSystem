@@ -31,4 +31,9 @@ public class paperNoteService {
     public void delnote(int id){
         paperNoteRepo.delete(id);
     }
+
+    public int numNote(String stuid) {
+
+        return paperNoteRepo.countByStuid(stuid);
+    }
 }

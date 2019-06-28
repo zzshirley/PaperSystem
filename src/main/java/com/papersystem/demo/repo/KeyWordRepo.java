@@ -25,6 +25,5 @@ public interface KeyWordRepo extends JpaRepository<KeyWords,String> {
     List<KeyWords> findByStuidAndLang(String stuid,String lang);
     List<KeyWords> findByStuidAndWord1(String stuid,String word);
     List<KeyWords> findByStuid(String stuid);
-
-
+    int countByStuid(String stuid);
 }

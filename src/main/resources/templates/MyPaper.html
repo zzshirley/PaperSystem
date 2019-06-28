@@ -36,7 +36,7 @@
             <li class="active "><a href="MyPaper.html">我的论文</a></li>
         </ul>
         <div class="container">
-            <tr class="row">
+            <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <a data-toggle="modal" data-target="#title" href="javascript:void(0)" th:text="${title}" style="color: #0e90d2;font-size: 33px"></a>
                 <div style="height: 6px"></div>
@@ -104,7 +104,8 @@
                             <td><a th:href="@{'/Selfeva?chapter='+'结论'}">阅读与自评</a></td>
                             <td><p th:text="${map['chp7']['selfeva']}"></p></td>
                         </tr>
-                        <tr><td><p><a th:href="@{'/writePaper?chapter='+'参考文献'}">参考文献</a></p></td>
+                        <tr th:if="${map['chp8']}!=null">
+                            <td><p><a th:href="@{'/writePaper?chapter='+'参考文献'}">参考文献</a></p></td>
                             <td><h5 th:text="${map['chp8']['realnum']}+'/'+${map['chp8']['words']}"></h5></td>
                             <td></td>
                             <td></td>

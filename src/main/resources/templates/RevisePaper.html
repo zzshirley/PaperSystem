@@ -98,11 +98,19 @@
 
         return str;
     }
+    function textareaTo(str){
+        var reg=new RegExp("\n","g");
+        var regSpace=new RegExp(" ","g");
+
+        str = str.replace(reg,"<br>");
+        str = str.replace(regSpace,"&nbsp;");
+
+        return str;
+    }
     subpaper=function() {
-        var papercontent=$('#mycontent').val();
+        var papercontent=$('#revisemycontent').val();
         var chapter=$("#chpt").text();
         length=fnGetCpmisWords(textareaTo(papercontent));
-        console.log(papercontent);
         $.ajax({
             url: '/submyPaper',
             data: {
