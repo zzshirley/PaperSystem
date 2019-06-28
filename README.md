@@ -5,4 +5,4 @@
 
 #### - 系统功能
   系统功能如图所示，此系统包括文献与目标、论文撰写、意见修改三个功能模块。其中，文献与目标模块包括投稿信息设定、目标设定、进度规划等功能，论文撰写包括论文撰写与自我评价功能，意见修改包括提供意见、修改意见、修改论文等功能。
-  
+<img src="https://github.com/zzshirley/PaperSystem/blob/master/src/main/resources/static/bootstrap/image/写作系统功能图.png" style="zoom:50%">
