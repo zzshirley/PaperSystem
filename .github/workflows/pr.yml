@@ -1,0 +1,193 @@
+name: PR Quality and Security Check
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  quality-security-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Ensure full history for proper diff
+
+      - name: Gather Full Code From Changed Files
+        run: |
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+          echo '{"original files": [' > original_files_temp.json
+          for file in $CHANGED_FILES; do
+            if [[ $file == *.json ]] || [[ $file == *.png ]]; then
+              continue
+            fi
+            if [ -f "$file" ]; then
+              CONTENT=$(jq -Rs . < "$file")
+              echo "{\"filename\": \"$file\", \"content\": $CONTENT}," >> original_files_temp.json
+            fi
+          done
+          sed -i '$ s/,$//' original_files_temp.json
+          echo "]}" >> original_files_temp.json
+
+      - name: Display Processed Diff (Debug)
+        run: cat original_files_temp.json
+
+      - name: Get Diff
+        run: |
+          git diff origin/main...HEAD \
+            | grep '^[+-]' \
+            | grep -Ev '^(---|\+\+\+)' > code_changes_only.txt
+          jq -Rs '{diff: .}' code_changes_only.txt > diff.json
+          if [ -f original_files_temp.json ]; then
+            jq -s '.[0] * .[1]' diff.json original_files_temp.json > combined.json
+            mv combined.json diff.json
+
+      - name: Display Processed Diff (Debug)
+        run: cat diff.json
+
+      - name: Analyze with ds
+        run: |
+          DIFF_CONTENT=$(jq -r '.diff' diff.json)
+          ORIGINAL_FILES=$(jq -r '."original files"' diff.json)
+          PROMPT="Please review the following code changes for any obvious quality or security issues. Provide a brief report in markdown format:\n\nDIFF:\n${DIFF_CONTENT}\n\nORIGINAL FILES:\n${ORIGINAL_FILES}"
+          jq -n --arg prompt "$PROMPT" '{
+            "model": "deepseek-r1:14b",
+            "messages": [
+              { "role": "system", "content": "You are a code reviewer." },
+              { "role": "user", "content": $prompt }
+            ]
+          }' > request.json
+          curl -sS http://localhost:11434/api/generate \
+            -H "Content-Type: application/json" \
+            -d @request.json > response.json
+
+      - name: Extract Review Message
+        id: extract_message
+        run: |
+          ASSISTANT_MSG=$(jq -r '.choices[0].message.content' response.json)
+          {
+            echo "message<<EOF"
+            echo "$ASSISTANT_MSG"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Post Comment to PR
+        env:
+          COMMENT: ${{ steps.extract_message.outputs.message }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api \
+            repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -f body="$COMMENT"
+  enterprise-standard-check:
+    runs-on: ubuntu-latest
+    needs: [quality-security-analysis]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # ensures we get both PR base and head
+
+      - name: Gather Full Code From Changed Files
+        run: |
+          # Identify changed files from the base (origin/main) to the pull request HEAD
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+
+          # Build a JSON array containing filenames and their content
+          echo '{"original files": [' > original_files_temp.json
+          for file in $CHANGED_FILES; do
+            # Skip .json and .txt files
+            if [[ $file == *.json ]] || [[ $file == *.txt ]]; then
+              continue
+            fi
+
+            # If the file still exists (i.e., wasn't deleted)
+            if [ -f "$file" ]; then
+              CONTENT=$(jq -Rs . < "$file")
+              echo "{\"filename\": \"$file\", \"content\": $CONTENT}," >> original_files_temp.json
+            fi
+          done
+
+          # Remove trailing comma on the last file entry and close JSON
+          sed -i '$ s/,$//' original_files_temp.json
+          echo "]}" >> original_files_temp.json
+
+      - name: Analyze Code Against Best Practices
+        id: validate
+        # env:
+        #   OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          set -e
+          # Read captured code
+          ORIGINAL_FILES=$(cat original_files_temp.json)
+
+          # Construct the prompt:
+          #  - Summarize each best-practice category
+          #  - Provide a rating for each category: 'extraordinary', 'acceptable', or 'poor'
+          #  - Return a Markdown table titled 'Enterprise Standards'
+          PROMPT="You are an Enterprise Code Assistant. Review each code snippet below for its adherence to the following categories: 
+          1) Code Style & Formatting
+          2) Security & Compliance
+          3) Error Handling & Logging
+          4) Readability & Maintainability
+          5) Performance & Scalability
+          6) Testing & Quality Assurance
+          7) Documentation & Version Control
+          8) Accessibility & Internationalization
+
+          Using \${{ vars.BEST_PRACTICES }} as a reference, assign a rating of 'extraordinary', 'acceptable', or 'poor' for each category. Return a markdown table titled 'Enterprise Standards' with rows for each category and columns for 'Category' and 'Rating'. 
+
+          Here are the changed file contents to analyze:
+          $ORIGINAL_FILES"
+
+          # Create JSON request for OpenAI
+          jq -n --arg system_content "You are an Enterprise Code Assistant ensuring the code follows best practices." \
+                --arg user_content "$PROMPT" \
+          '{
+            "model": "deepseek-r1:14b",
+            "messages": [
+              {
+                "role": "system",
+                "content": $system_content
+              },
+              {
+                "role": "user",
+                "content": $user_content
+              }
+            ]
+          }' > request.json
+
+          # Make the API call
+          curl -sS http://localhost:11434/api/generate \
+            -H "Content-Type: application/json" \
+            -d @request.json > response.json
+
+          # Extract the model's message
+          ASSISTANT_MSG=$(jq -r '.choices[0].message.content' response.json)
+
+          # Store for next step
+          {
+            echo "review<<EOF"
+            echo "$ASSISTANT_MSG"
+            echo "EOF"
+          } >> $GITHUB_OUTPUT
+
+      - name: Post Table Comment
+        env:
+          COMMENT: ${{ steps.validate.outputs.review }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # If COMMENT is empty or null, skip posting
+          if [ -z "$COMMENT" ] || [ "$COMMENT" = "null" ]; then
+            echo "No comment to post."
+            exit 0
+          fi
+
+          gh api \
+            repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            -f body="$COMMENT"
